@@ -31,7 +31,7 @@ ChronoKatana - игра в жанре 2D платформер, разработ�
 [![Badge](https://img.shields.io/badge/danil-%232E87FB.svg?&style=for-the-badge&logo=vk&logoColor=white)](https://vk.com/danissemoo)</a>
 
 1 курс:
-<a>[![Badge](https://img.shields.io/badge/ivan-%232E87FB.svg?&style=for-the-badge&logo=vk&logoColor=white)](https://vk.com/https://vk.com/enot_tuktik)
+<a>[![Badge](https://img.shields.io/badge/ivan-%232E87FB.svg?&style=for-the-badge&logo=vk&logoColor=white)](https://vk.com/enot_tuktik)
 [![Badge](https://img.shields.io/badge/mihail-%232E87FB.svg?&style=for-the-badge&logo=vk&logoColor=white)](https://vk.com/kto___t0)
 [![Badge](https://img.shields.io/badge/aleksandr-%232E87FB.svg?&style=for-the-badge&logo=vk&logoColor=white)](https://vk.com/ssv872)
 </a>
