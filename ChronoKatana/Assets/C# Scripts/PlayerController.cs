@@ -27,8 +27,9 @@ public class PlayerController : MonoBehaviour
     private void movement()
     {
         float movement = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(movement, 0, 0) * speed * Time.deltaTime;
         sr.flipX = movement < 0 ? true : false;
+        transform.position += new Vector3(movement, 0, 0) * speed * Time.deltaTime;
+        
     }
 
     private void jump()
