@@ -20,13 +20,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        movement();
+        jump();
+    }
+
+    private void movement()
+    {
         float movement = Input.GetAxis("Horizontal");
         transform.position += new Vector3(movement, 0, 0) * speed * Time.deltaTime;
-    
-    
-        if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.05f)
-            rb .AddForce(new Vector2 (0, jumpForce), ForceMode2D.Impulse);
-    
         sr.flipX = movement < 0 ? true : false;
+    }
+
+    private void jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.01f)
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
     }
 }
