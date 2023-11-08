@@ -4,37 +4,84 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 3f;
-    public float jumpForce = 7f;
     
-    Rigidbody2D rb;
-    SpriteRenderer sr;
+    private Rigidbody2D rb;
+    private float HorizontalMove = 0f;
+    private bool FacingRight = true;
 
-    // Start is called before the first frame update
+    public float speed = 1f;
+    public float jumpForce = 8f;
+    public bool isGrounded = false;
+    public float checkGroundOffsetY = -1.8f;
+    public float checkGroundRadius = 0.3f;
+    public Animator animator;
+
+
+
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        movement();
-        jump();
-    }
-
-    private void movement()
-    {
-        float movement = Input.GetAxis("Horizontal");
-        sr.flipX = movement < 0 ? true : false;
-        transform.position += new Vector3(movement, 0, 0) * speed * Time.deltaTime;
         
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+        }
+
+        HorizontalMove = Input.GetAxisRaw("Horizontal") * speed;
+
+        animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
+
+        if (isGrounded == false)
+        {
+            animator.SetBool("Jumping", true);
+        }
+        else
+        {
+            animator.SetBool("Jumping", false);
+        }
+
+        if (HorizontalMove < 0 && FacingRight)
+        {
+            Flip();
+        }
+        else if (HorizontalMove > 0 && !FacingRight)
+        {
+            Flip();
+        }
+    }
+    private void FixedUpdate()
+    {
+        Vector2 targetVelocity = new Vector2(HorizontalMove * 10f, rb.velocity.y);
+        rb.velocity = targetVelocity;
+
+        CheckGround();
     }
 
-    private void jump()
+    private void Flip()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.01f)
-            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        FacingRight = !FacingRight;
+
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
+    private void CheckGround()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y + checkGroundOffsetY), checkGroundRadius);
+
+        if (colliders.Length > 1)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 }
