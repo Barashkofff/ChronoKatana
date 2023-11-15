@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
+    private bool DoubleJumpEnable = true;
 
     public float speed = 1f;
     public float jumpForce = 8f;
@@ -28,9 +29,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            if (isGrounded) { 
+                rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+                
+            }
+            else if (DoubleJumpEnable) {
+                rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+                DoubleJumpEnable = false;
+            }
+
         }
 
         HorizontalMove = Input.GetAxisRaw("Horizontal") * speed;
@@ -55,6 +64,7 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
     }
+
     private void FixedUpdate()
     {
         Vector2 targetVelocity = new Vector2(HorizontalMove * 10f, rb.velocity.y);
@@ -77,6 +87,7 @@ public class PlayerController : MonoBehaviour
 
         if (colliders.Length > 1)
         {
+            DoubleJumpEnable = true;
             isGrounded = true;
         }
         else
