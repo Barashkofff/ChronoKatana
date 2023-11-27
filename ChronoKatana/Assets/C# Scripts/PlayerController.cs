@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     
     private Rigidbody2D rb;
+
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
     private bool DoubleJumpEnable = true;
@@ -28,7 +29,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded) { 
