@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
     private Rigidbody2D rb;
-
+    private PolygonCollider2D attackCollider;
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
     private bool DoubleJumpEnable = true;
@@ -18,17 +17,38 @@ public class PlayerController : MonoBehaviour
     public float checkGroundRadius = 0.3f;
     public Animator animator;
 
+    [SerializeField]
+    private float attackTime;
 
+    private float attackTimer;
+    private bool isAttacking = false;
 
-
+    //потом перенести в отдельный скрипт
+    public float damage;
 
     void Start()
     {
+        attackCollider = GetComponent<PolygonCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
+        {
+            animator.SetBool("Attacking", true);
+            isAttacking = true;
+            attackTimer = attackTime;
+            attackCollider.enabled = true;
+        }
+        else
+        {
+            animator.SetBool("Attacking", false);
+            isAttacking = false;
+            attackCollider.enabled = false;
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded) { 

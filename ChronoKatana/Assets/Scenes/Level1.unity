@@ -12668,9 +12668,11 @@ GameObject:
   m_Component:
   - component: {fileID: 601012059}
   - component: {fileID: 601012058}
+  - component: {fileID: 601012060}
+  - component: {fileID: 601012061}
   m_Layer: 0
   m_Name: King
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12742,6 +12744,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &601012060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601012057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f1b54eb86efb641b98b5ca09a2efdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 10
+--- !u!61 &601012061
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601012057}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.3125, y: 3.6875}
+    newSize: {x: 0.27, y: 0.27}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.3125, y: 3.6875}
+  m_EdgeRadius: 0
 --- !u!1 &627278558
 GameObject:
   m_ObjectHideFlags: 0
@@ -13324,6 +13365,8 @@ MonoBehaviour:
   checkGroundOffsetY: -1
   checkGroundRadius: 0.3
   animator: {fileID: 1247519550}
+  attackTime: 0.5
+  damage: 10
 --- !u!61 &1247519546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13341,7 +13384,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.25, y: 1.8125}
+    oldSize: {x: 3.0625, y: 3}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -13412,7 +13455,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: 951209814, guid: af7618d309a4c97468cf280b638f97d5, type: 3}
+  m_Sprite: {fileID: 1658371568, guid: 7d83fff01b871864d8c3915f44096653, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13475,7 +13518,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.25, y: 1.8125}
+    oldSize: {x: 3.0625, y: 3}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -13483,13 +13526,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.6656352, y: 0.90625}
+    - - {x: 0.9750484, y: 0.8110459}
       - {x: 0.6668508, y: -0.89612937}
       - {x: 1.3276247, y: -0.8765521}
       - {x: 1.6198735, y: -0.43108702}
-      - {x: 1.7238152, y: 0.3022747}
+      - {x: 2.0332282, y: 0.81002975}
       - {x: 1.2709253, y: 0.82890105}
-      - {x: 1.049408, y: 0.9656453}
+      - {x: 1.0414743, y: 0.8387065}
 --- !u!1 &1309188459
 GameObject:
   m_ObjectHideFlags: 0
