@@ -20,7 +20,9 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
     public LayerMask enemyLayers;
 
-    public bool inputReceived;
+    [HideInInspector]
+    public bool inputReceived = false;
+    [HideInInspector]
     public bool canReceiveInput = true;
 
 
