@@ -12768,7 +12768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601012057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.16, y: -3.157, z: -0.21854112}
+  m_LocalPosition: {x: -0.19, y: -3.14, z: -0.21854112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13349,7 +13349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213971848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.403, y: -3.996, z: 0.0588212}
+  m_LocalPosition: {x: -5.67, y: -4.01, z: 0.0588212}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13477,7 +13477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1247519544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.339, y: -4, z: 0}
+  m_LocalPosition: {x: -7.12, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13518,14 +13518,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1247519550}
-  damage: 4
+  damage: 2
   attackPoint: {fileID: 281628376}
   attackRange: 1
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
   inputReceived: 0
-  canReceiveInput: 1
 --- !u!70 &1247519552
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
