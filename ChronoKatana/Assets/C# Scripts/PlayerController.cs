@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float attackTime;
 
-    private float attackTimer;
-    private bool isAttacking = false;
+    //private float attackTimer;
+    //private bool isAttacking = false;
 
     //потом перенести в отдельный скрипт
     public float damage;
@@ -34,18 +34,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            animator.SetBool("Attacking", true);
-            isAttacking = true;
-            attackTimer = attackTime;
-            attackCollider.enabled = true;
-        }
-        else
-        {
-            animator.SetBool("Attacking", false);
-            isAttacking = false;
-            attackCollider.enabled = false;
+            Attack();
         }
 
 
@@ -53,11 +44,12 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded) { 
                 rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-                
+                animator.Play("Player_Jump");
             }
             else if (DoubleJumpEnable) {
                 rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
                 DoubleJumpEnable = false;
+                animator.Play("Player_Jump");
             }
 
         }
@@ -66,13 +58,13 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
 
-        if (isGrounded == false)
+        if (isGrounded)
         {
-            animator.SetBool("Jumping", true);
+            animator.SetBool("InAir", false);
         }
         else
         {
-            animator.SetBool("Jumping", false);
+            animator.SetBool("InAir", true);
         }
 
         if (HorizontalMove < 0 && FacingRight)
@@ -114,5 +106,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    private void Attack()
+    {
+
     }
 }
