@@ -13550,6 +13550,8 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
+  inputReceived: 0
+  canReceiveInput: 1
 --- !u!1 &1309188459
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,22 +20,34 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
     public LayerMask enemyLayers;
 
+    public bool inputReceived;
+    public bool canReceiveInput = true;
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
             Attack();
     }
 
-    private void Attack()
+    public void Attack()
     {
-        animator.SetTrigger("Attack");
+        if (!canReceiveInput)
+            return;
+
+        
+        canReceiveInput = false;
+        inputReceived = true;
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
-        {
             enemy.GetComponent<Enemy>().TakeDamage(damage);
-        }
     }
+
+    public void InputManager() {
+        Debug.Log("Inp Man");
+        canReceiveInput = !canReceiveInput; }
 
     private void OnDrawGizmosSelected()
     {
