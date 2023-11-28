@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private PolygonCollider2D attackCollider;
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
     private bool DoubleJumpEnable = true;
@@ -15,31 +14,15 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = false;
     public float checkGroundOffsetY = -1.8f;
     public float checkGroundRadius = 0.3f;
-    public Animator animator;
-
-    [SerializeField]
-    private float attackTime;
-
-    //private float attackTimer;
-    //private bool isAttacking = false;
-
-    //потом перенести в отдельный скрипт
-    public float damage;
+    public Animator animator;    
 
     void Start()
     {
-        attackCollider = GetComponent<PolygonCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Attack();
-        }
-
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded) { 
@@ -106,10 +89,5 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
-    }
-
-    private void Attack()
-    {
-
     }
 }

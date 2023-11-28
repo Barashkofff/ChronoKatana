@@ -344,6 +344,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &281628375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281628376}
+  m_Layer: 7
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &281628376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281628375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.82, y: 0.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1247519549}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &327919134
 GameObject:
   m_ObjectHideFlags: 0
@@ -12670,9 +12701,9 @@ GameObject:
   - component: {fileID: 601012058}
   - component: {fileID: 601012060}
   - component: {fileID: 601012061}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: King
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13337,9 +13368,10 @@ GameObject:
   - component: {fileID: 1247519548}
   - component: {fileID: 1247519547}
   - component: {fileID: 1247519546}
-  - component: {fileID: 1247519545}
   - component: {fileID: 1247519550}
-  m_Layer: 0
+  - component: {fileID: 1247519545}
+  - component: {fileID: 1247519551}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -13364,8 +13396,6 @@ MonoBehaviour:
   checkGroundOffsetY: -1
   checkGroundRadius: 0.3
   animator: {fileID: 1247519550}
-  attackTime: 0.5
-  damage: 10
 --- !u!61 &1247519546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13476,7 +13506,8 @@ Transform:
   m_LocalPosition: {x: 2.339, y: -4.091, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 281628376}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13500,6 +13531,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1247519551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247519544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36088074c07378a4593a31cc6b7fc663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1247519550}
+  damage: 4
+  attackPoint: {fileID: 281628376}
+  attackRange: 1
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1309188459
 GameObject:
   m_ObjectHideFlags: 0

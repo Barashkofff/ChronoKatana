@@ -12,9 +12,9 @@ public class Enemy : MonoBehaviour
         cur_hp = hp;
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float damage)
     {
-        cur_hp -= FindObjectOfType<PlayerController>().damage;
+        cur_hp -= damage;
         Debug.Log(cur_hp);
         if (cur_hp <= 0)
             Die();
@@ -24,12 +24,5 @@ public class Enemy : MonoBehaviour
     {
         gameObject.SetActive(false);
         Debug.Log("смерть");
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        Debug.Log("u");
-        if (collider.isTrigger && collider.tag == "Player")
-            TakeDamage();
     }
 }
