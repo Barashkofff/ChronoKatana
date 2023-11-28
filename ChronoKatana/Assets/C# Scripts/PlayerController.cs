@@ -26,11 +26,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded) { 
-                rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 animator.Play("Player_Jump");
             }
             else if (DoubleJumpEnable) {
-                rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 DoubleJumpEnable = false;
                 animator.Play("Player_Jump");
             }

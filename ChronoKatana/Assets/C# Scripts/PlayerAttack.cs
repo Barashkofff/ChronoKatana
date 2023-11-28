@@ -22,8 +22,6 @@ public class PlayerAttack : MonoBehaviour
 
     [HideInInspector]
     public bool inputReceived = false;
-    [HideInInspector]
-    public bool canReceiveInput = true;
 
 
     void Update()
@@ -34,22 +32,16 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
-        if (!canReceiveInput)
-            return;
-
-        
-        canReceiveInput = false;
-        inputReceived = true;
+        if (!animator.GetBool("IsAttackStart"))
+            animator.Play("Attack_1");
+        else
+            inputReceived = true;
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
             enemy.GetComponent<Enemy>().TakeDamage(damage);
     }
-
-    public void InputManager() {
-        Debug.Log("Inp Man");
-        canReceiveInput = !canReceiveInput; }
 
     private void OnDrawGizmosSelected()
     {
