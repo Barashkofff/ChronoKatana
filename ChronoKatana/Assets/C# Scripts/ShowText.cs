@@ -9,16 +9,19 @@ public class ShowText : MonoBehaviour
     void Start()
     {
         text.SetActive(false);
+
     }
 
 
     public void OnMouseOver()
     {
         text.SetActive(true);
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void OnMouseExit()
     {
         text.SetActive(false);
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 }
