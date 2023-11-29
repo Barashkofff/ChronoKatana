@@ -48,6 +48,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: abd8d2d825d35ee4dadd574a648419b0, type: 3}
     - {fileID: 2800000, guid: ef770af2a4ea5dd4aa3203395fb83e33, type: 3}
     - {fileID: 2800000, guid: fe63a950aafdf2448bab995f7ce74fef, type: 3}
+    - {fileID: 2800000, guid: 1fbef69ed1796854193bd0f13ee2dc11, type: 3}
+    - {fileID: 2800000, guid: 758710f6099e16745975d3d0f903f1c3, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -126,6 +128,9 @@ SpriteAtlas:
   - {fileID: 1578658242, guid: ef770af2a4ea5dd4aa3203395fb83e33, type: 3}
   - {fileID: -1868657117, guid: ef770af2a4ea5dd4aa3203395fb83e33, type: 3}
   - {fileID: 630307169, guid: ef770af2a4ea5dd4aa3203395fb83e33, type: 3}
+  - {fileID: -1731161062, guid: 758710f6099e16745975d3d0f903f1c3, type: 3}
+  - {fileID: -580998713, guid: 758710f6099e16745975d3d0f903f1c3, type: 3}
+  - {fileID: 85383415, guid: 758710f6099e16745975d3d0f903f1c3, type: 3}
   - {fileID: -878570074, guid: abd8d2d825d35ee4dadd574a648419b0, type: 3}
   - {fileID: -1180099431, guid: abd8d2d825d35ee4dadd574a648419b0, type: 3}
   - {fileID: 1725767295, guid: abd8d2d825d35ee4dadd574a648419b0, type: 3}
@@ -162,6 +167,10 @@ SpriteAtlas:
   - {fileID: -1095780129, guid: abd8d2d825d35ee4dadd574a648419b0, type: 3}
   - {fileID: 690288156, guid: abd8d2d825d35ee4dadd574a648419b0, type: 3}
   - {fileID: -1129683090, guid: abd8d2d825d35ee4dadd574a648419b0, type: 3}
+  - {fileID: -1418334549, guid: 1fbef69ed1796854193bd0f13ee2dc11, type: 3}
+  - {fileID: -1226246989, guid: 1fbef69ed1796854193bd0f13ee2dc11, type: 3}
+  - {fileID: 1671583236, guid: 1fbef69ed1796854193bd0f13ee2dc11, type: 3}
+  - {fileID: 791138913, guid: 1fbef69ed1796854193bd0f13ee2dc11, type: 3}
   m_PackedSpriteNamesToIndex:
   - Texture4_1
   - Texture4_0
@@ -236,6 +245,9 @@ SpriteAtlas:
   - Texture3_0
   - Texture3_18
   - Texture3_1
+  - prison _2
+  - prison _1
+  - prison _0
   - Texture2_7
   - Texture2_6
   - Texture2_5
@@ -272,6 +284,10 @@ SpriteAtlas:
   - Texture2_22
   - Texture2_21
   - Texture2_20
+  - angleSprites_3
+  - angleSprites_2
+  - angleSprites_1
+  - angleSprites_0
   m_RenderDataMap: {}
   m_Tag: Ground
   m_IsVariant: 0
