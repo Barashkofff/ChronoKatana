@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
     private Rigidbody2D rb;
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
@@ -15,11 +14,7 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = false;
     public float checkGroundOffsetY = -1.8f;
     public float checkGroundRadius = 0.3f;
-    public Animator animator;
-
-
-
-
+    public Animator animator;    
 
     void Start()
     {
@@ -28,16 +23,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded) { 
-                rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-                
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                animator.Play("Player_Jump");
             }
             else if (DoubleJumpEnable) {
-                rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 DoubleJumpEnable = false;
+                animator.Play("Player_Jump");
             }
 
         }
@@ -46,13 +41,13 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
 
-        if (isGrounded == false)
+        if (isGrounded)
         {
-            animator.SetBool("Jumping", true);
+            animator.SetBool("InAir", false);
         }
         else
         {
-            animator.SetBool("Jumping", false);
+            animator.SetBool("InAir", true);
         }
 
         if (HorizontalMove < 0 && FacingRight)
