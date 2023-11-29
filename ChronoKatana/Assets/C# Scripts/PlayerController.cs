@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Singleton
+
+    public static PlayerController instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    #endregion
+
     private Rigidbody2D rb;
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
     private bool DoubleJumpEnable = true;
 
+    public CameraController camera_controller;
     public float speed = 1f;
     public float jumpForce = 8f;
     public bool isGrounded = false;
@@ -34,38 +46,31 @@ public class PlayerController : MonoBehaviour
                 DoubleJumpEnable = false;
                 animator.Play("Player_Jump");
             }
-
         }
+
+        if (Input.GetKeyDown(KeyCode.S))
+            camera_controller.offset.y -= 3;
+        if (Input.GetKeyUp(KeyCode.S))
+            camera_controller.offset.y += 3;
 
         HorizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
 
-        if (isGrounded)
-        {
-            animator.SetBool("InAir", false);
-        }
-        else
-        {
-            animator.SetBool("InAir", true);
-        }
+        animator.SetBool("InAir", !isGrounded);
 
-        if (HorizontalMove < 0 && FacingRight)
-        {
+        if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
-        }
-        else if (HorizontalMove > 0 && !FacingRight)
-        {
-            Flip();
-        }
+
+        Vector2 targetVelocity = new Vector2(HorizontalMove * 10, rb.velocity.y);
+        rb.velocity = targetVelocity;
+
+        CheckGround();
     }
 
     private void FixedUpdate()
     {
-        Vector2 targetVelocity = new Vector2(HorizontalMove * 10f, rb.velocity.y);
-        rb.velocity = targetVelocity;
-
-        CheckGround();
+        
     }
 
     private void Flip()
@@ -86,8 +91,11 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
         }
         else
-        {
             isGrounded = false;
-        }
+    }
+
+    public bool GetFacing()
+    {
+        return FacingRight;
     }
 }

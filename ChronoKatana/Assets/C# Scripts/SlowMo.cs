@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlowMo : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class SlowMo : MonoBehaviour
 
     #endregion
 
+    public Slider TimeBar;
     public float slowMoTime;
     public float slowMoOffset;
 
@@ -24,13 +26,14 @@ public class SlowMo : MonoBehaviour
     void Start()
     {
         _timer = slowMoTime;
+        TimeBar.value = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
             if (_timer > slowMoOffset && _onCoolDown)
             {
@@ -39,7 +42,7 @@ public class SlowMo : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             Time.timeScale = 1f;
             _onCoolDown = true;
@@ -58,5 +61,7 @@ public class SlowMo : MonoBehaviour
         }
         else
             _timer -= Time.deltaTime * 2;
+
+        TimeBar.value = (slowMoTime - _timer) / slowMoTime;
     }
 }

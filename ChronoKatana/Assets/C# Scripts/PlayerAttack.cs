@@ -27,21 +27,22 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            Attack();
+        {
+            if (!animator.GetBool("IsAttackStart"))
+                animator.Play("Attack_1");
+            else
+                inputReceived = true;
+        }
     }
 
     public void Attack()
     {
-        if (!animator.GetBool("IsAttackStart"))
-            animator.Play("Attack_1");
-        else
-            inputReceived = true;
-
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
             enemy.GetComponent<Enemy>().TakeDamage(damage);
     }
+
 
     private void OnDrawGizmosSelected()
     {
