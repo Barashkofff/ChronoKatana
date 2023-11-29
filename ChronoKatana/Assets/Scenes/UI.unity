@@ -1332,6 +1332,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 468519251}
+    - target: {fileID: 6022428861182544408, guid: f0ece553429521d43bdd35b9b0400445, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a2a5c34f7851a844bbcd3234c6c98b8, type: 2}
+    - target: {fileID: 6022428861182544408, guid: f0ece553429521d43bdd35b9b0400445, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6022428861200824812, guid: f0ece553429521d43bdd35b9b0400445, type: 3}
       propertyPath: m_Name
       value: SettingsPanel
