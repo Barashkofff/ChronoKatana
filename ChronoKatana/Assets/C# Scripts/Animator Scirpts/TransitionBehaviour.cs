@@ -16,6 +16,7 @@ public class TransitionBehaviour : StateMachineBehaviour
         {
             animator.SetTrigger("AttackTwo");
             PlayerAttack.instance.inputReceived = false;
+            PlayerAttack.instance.Attack();
         }
     }
 
