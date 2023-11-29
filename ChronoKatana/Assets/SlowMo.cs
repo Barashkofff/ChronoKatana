@@ -29,12 +29,6 @@ public class SlowMo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            if (_timer > slowMoOffset)
-                Time.timeScale = 0.5f;
-            _onCoolDown = false;
-        }
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
