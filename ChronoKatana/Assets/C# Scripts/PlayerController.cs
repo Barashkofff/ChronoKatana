@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
 public class PlayerController : MonoBehaviour
 {
     #region Singleton
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("InAir", !isGrounded);
 
+
+
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
 
@@ -66,12 +70,17 @@ public class PlayerController : MonoBehaviour
         rb.velocity = targetVelocity;
 
         CheckGround();
+
+        //__________________________________________
+        if (Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene("UI");
+        //__________________________________________
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
+    //private void FixedUpdate()
+    //{
+
+    //}
 
     private void Flip()
     {
