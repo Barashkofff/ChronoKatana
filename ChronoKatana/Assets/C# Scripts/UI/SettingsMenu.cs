@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using Newtonsoft.Json.Linq;
-using System.Security.Cryptography.X509Certificates;
 using TMPro;
 
 public class SettingsMenu : MonoBehaviour
@@ -35,9 +32,7 @@ public class SettingsMenu : MonoBehaviour
             SetVolume(savedVolume);
         }
         else
-        {
-            SetVolume(0.3f); 
-        }
+            SetVolume(0.1f);
     }
 
     // Для сохранения
@@ -47,7 +42,7 @@ public class SettingsMenu : MonoBehaviour
 
     Resolution[] resolutions;
 
-    void Start()
+    public void StartSetSettings()
     {
         // Автоматическое определение разрешения
         resolutionDropdown.ClearOptions();
@@ -66,8 +61,7 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
         LoadSettings(currentResolutionIndex);
-
-        LoadVolume();
+        gameObject.SetActive(false);
     }
 
     // Полноэкранность
@@ -88,12 +82,7 @@ public class SettingsMenu : MonoBehaviour
     {
         PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
         PlayerPrefs.SetInt("FullscreenPreference", System.Convert.ToInt32(Screen.fullScreen));
-        float value;
-        bool flag = audioMixer.GetFloat("Volume", out value);
-        if (flag) 
-            SaveVolume(value);
-        else
-            SaveVolume(0.3f);
+        SaveVolume(slider.value);
     }
 
     // Загрузка сохранённых настроек
