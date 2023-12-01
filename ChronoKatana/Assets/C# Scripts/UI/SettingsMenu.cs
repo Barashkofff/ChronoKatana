@@ -11,65 +11,95 @@ using TMPro;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-    
-    //Аудио
+
+    // Аудио
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
+        SaveVolume(volume);
     }
 
-    //Для сохранения
+    // Сохранение громкости
+    private void SaveVolume(float volume)
+    {
+        slider.value = volume;
+        PlayerPrefs.SetFloat("VolumePreference", volume);
+    }
+
+    // Загрузка настроек
+    private void LoadVolume()
+    {
+        if (PlayerPrefs.HasKey("VolumePreference"))
+        {
+            float savedVolume = PlayerPrefs.GetFloat("VolumePreference");
+            SetVolume(savedVolume);
+        }
+        else
+        {
+            SetVolume(0.3f); 
+        }
+    }
+
+    // Для сохранения
     public TMP_Dropdown resolutionDropdown;
+
+    public Slider slider;
 
     Resolution[] resolutions;
 
     void Start()
     {
-        //Автоматическое определение разрешения
+        // Автоматическое определение разрешения
         resolutionDropdown.ClearOptions();
-        List<string> opions = new List<string>();
+        List<string> options = new List<string>();
         resolutions = Screen.resolutions;
         int currentResolutionIndex = 0;
 
         for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRate + "Hz";
-            opions.Add(option);
+            options.Add(option);
             if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
-                currentResolutionIndex = 1;
+                currentResolutionIndex = i;
         }
 
-        resolutionDropdown.AddOptions(opions);
+        resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
         LoadSettings(currentResolutionIndex);
 
-        audioMixer.SetFloat("Volume", Mathf.Log10(0.5f) * 20);
+        LoadVolume();
     }
 
-    //Полноэкранность
+    // Полноэкранность
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
     }
 
-    //Разрешение
+    // Разрешение
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    //Сохранение настроек (без звука)
+    // Сохранение настроек
     public void SaveSettings()
     {
         PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
         PlayerPrefs.SetInt("FullscreenPreference", System.Convert.ToInt32(Screen.fullScreen));
+        float value;
+        bool flag = audioMixer.GetFloat("Volume", out value);
+        if (flag) 
+            SaveVolume(value);
+        else
+            SaveVolume(0.3f);
     }
 
-    //Загразка сохранённых настроек
+    // Загрузка сохранённых настроек
     public void LoadSettings(int currentResolutionIndex)
     {
-
+        
         if (PlayerPrefs.HasKey("ResolutionPreference"))
             resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionPreference");
         else
@@ -79,5 +109,7 @@ public class SettingsMenu : MonoBehaviour
             Screen.fullScreen = System.Convert.ToBoolean(PlayerPrefs.GetInt("FullscreenPreference"));
         else
             Screen.fullScreen = true;
+
+        LoadVolume();
     }
 }
