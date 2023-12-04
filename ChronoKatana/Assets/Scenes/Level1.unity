@@ -37178,7 +37178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera_controller: {fileID: 710557704}
-  speed: 0.6
+  speed: 0.5
   jumpForce: 10
   isGrounded: 0
   checkGroundOffsetY: -1
