@@ -37184,6 +37184,41 @@ MonoBehaviour:
   checkGroundOffsetY: -1
   checkGroundRadius: 0.3
   animator: {fileID: 1247519550}
+  _dashTime: 0.2
+  _dashSpeed: 10
+  _dashSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0016822815
+      value: 1
+      inSlope: 0.020306474
+      outSlope: 0.020306474
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.09585073
+    - serializedVersion: 3
+      time: 0.8749771
+      value: 0.992722
+      inSlope: 0.0326121
+      outSlope: 0.0326121
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.10340687
+      outWeight: 0.35618553
+    - serializedVersion: 3
+      time: 0.9898071
+      value: 0.0033073425
+      inSlope: -20.51417
+      outSlope: -20.51417
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.05799421
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!50 &1247519547
 Rigidbody2D:
   serializedVersion: 4
