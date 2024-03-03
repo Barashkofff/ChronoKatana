@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Dash(new Vector2(GetFacing() ? 1 : -1, 0)));
             Debug.Log("Рывок");
         }
-
+        if (_isDashing) return;
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
 
