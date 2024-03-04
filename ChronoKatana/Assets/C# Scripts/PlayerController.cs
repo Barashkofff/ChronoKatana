@@ -49,11 +49,13 @@ public class PlayerController : MonoBehaviour
             if (isGrounded) { 
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 animator.Play("Player_Jump");
+                animator.Play("Legs_Jump");
             }
             else if (DoubleJumpEnable) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 DoubleJumpEnable = false;
                 animator.Play("Player_Jump");
+                animator.Play("Legs_Jump");
             }
         }
 
