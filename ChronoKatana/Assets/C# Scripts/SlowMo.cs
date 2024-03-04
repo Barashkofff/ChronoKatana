@@ -38,19 +38,17 @@ public class SlowMo : MonoBehaviour
             if (_timer > slowMoOffset && _onCoolDown)
             {
                 Time.timeScale = 0.5f;
+                Time.fixedDeltaTime = Time.timeScale * .02f / 2; //После фикса камеры убрать /2
+
                 _onCoolDown = false;
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyUp(KeyCode.Mouse1) || _timer < 0)
         {
             Time.timeScale = 1f;
-            _onCoolDown = true;
-        }
-        
-        if (_timer < 0)
-        {
-            Time.timeScale = 1f;
+            Time.fixedDeltaTime = Time.timeScale * .02f / 2; //После фикса камеры убрать /2
+
             _onCoolDown = true;
         }
 

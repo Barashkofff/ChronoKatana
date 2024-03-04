@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 using UnityEngine.SceneManagement;
@@ -28,7 +30,12 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = false;
     public float checkGroundOffsetY = -1.8f;
     public float checkGroundRadius = 0.3f;
-    public Animator animator;    
+    public Animator animator;
+    private bool _isDashing;
+    [SerializeField] private float _dashTime = 0.5f;
+    [SerializeField] private float _dashSpeed;
+    [SerializeField] private AnimationCurve _dashSpeedCurve;
+
 
     void Start()
     {
@@ -42,13 +49,17 @@ public class PlayerController : MonoBehaviour
             if (isGrounded) { 
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 animator.Play("Player_Jump");
+                animator.Play("Legs_Jump");
             }
             else if (DoubleJumpEnable) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 DoubleJumpEnable = false;
                 animator.Play("Player_Jump");
+                animator.Play("Legs_Jump");
             }
         }
+
+       
 
         if (Input.GetKeyDown(KeyCode.S))
             camera_controller.offset.y -= 3;
@@ -62,19 +73,27 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("InAir", !isGrounded);
 
 
+        CheckGround();
 
+
+        //__________________________________________
+        if (Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene("UI");
+        //__________________________________________
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            //rb.AddForce(new Vector2((GetFacing() ? 1 : -1) * 500, 0), ForceMode2D.Impulse);
+            StartCoroutine(Dash(new Vector2(GetFacing() ? 1 : -1, 0)));
+            Debug.Log("Рывок");
+        }
+        if (_isDashing) return;
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
 
         Vector2 targetVelocity = new Vector2(HorizontalMove * 10, rb.velocity.y);
         rb.velocity = targetVelocity;
 
-        CheckGround();
-
-        //__________________________________________
-        if (Input.GetKeyDown(KeyCode.Escape))
-            SceneManager.LoadScene("UI");
-        //__________________________________________
+        
     }
 
     //private void FixedUpdate()
@@ -107,4 +126,38 @@ public class PlayerController : MonoBehaviour
     {
         return FacingRight;
     }
+
+
+    private IEnumerator Dash(Vector2 direction)
+    {
+        if (direction == Vector2.zero) yield break;
+        if (_isDashing) yield break;
+
+        _isDashing = true;
+
+        var elapsedTime = 0f;
+        while (elapsedTime < _dashTime)
+        {
+            var velocityMultiplier = _dashSpeed * _dashSpeedCurve.Evaluate(elapsedTime);
+
+            ApplyVelocity(direction, velocityMultiplier);
+
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        _isDashing = false;
+        yield break;
+    }
+
+    private void ApplyVelocity(Vector3 desiredVelocity, float multiplier) // Дублирующийся код всегда выносить в отдельный метод
+    {
+        var velocity = rb.velocity;
+
+        velocity.y = desiredVelocity.y == 0 ? velocity.y : desiredVelocity.y * multiplier;// чтобы не ломать физику, скорость по Y будет изменяться только если это нужно
+        velocity.x = desiredVelocity.x * multiplier;
+        
+
+        rb.velocity = velocity;
+    }
 }
+
