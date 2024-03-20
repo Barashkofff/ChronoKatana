@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    [SerializeField] private float hp;
+    private float cur_hp;
     private Rigidbody2D rb;
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        cur_hp = hp;
     }
 
     void Update()
@@ -92,14 +95,21 @@ public class PlayerController : MonoBehaviour
 
         Vector2 targetVelocity = new Vector2(HorizontalMove * 10, rb.velocity.y);
         rb.velocity = targetVelocity;
-
-        
     }
 
-    //private void FixedUpdate()
-    //{
+    public void TakeDamage(float damage)
+    {
+        cur_hp -= damage;
+        Debug.Log(this.name + " hp: " + cur_hp);
+        if (cur_hp <= 0)
+            Die();
+    }
 
-    //}
+    private void Die()
+    {
+        gameObject.SetActive(false);
+        Debug.Log("You are killed");
+    }
 
     private void Flip()
     {
