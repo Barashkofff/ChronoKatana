@@ -3,12 +3,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.GraphicsBuffer;
 
-public class Enemy2 : MonoBehaviour
+class Enemy2 : MonoBehaviour
 {
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private float proj_speed;
     [SerializeField] private Transform[] patrolMarks;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private LayerMask IgnoreRC;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange;
@@ -48,6 +52,10 @@ public class Enemy2 : MonoBehaviour
             MoveTo(player.position);
         else {
             if (CheckRayCast() && cur_CD < 0) {
+                
+                if ((player.position - transform.position).x > 0 ^ FacingRight)
+                    Flip();
+
                 Attack();
                 cur_CD = attackCD;
             }
@@ -56,8 +64,9 @@ public class Enemy2 : MonoBehaviour
 
     private bool CheckRayCast()
     {
-        var hit = Physics2D.Raycast(transform.position, (player.position - transform.position).normalized * attackRange);
-        Debug.Log(hit.collider);
+        
+        var hit = Physics2D.Raycast(transform.position, (player.position - transform.position).normalized * attackRange, Vector2.Distance(player.position, transform.position), ~IgnoreRC);
+        
         if (hit.collider != null)
             return hit.collider.gameObject == player.gameObject;
         else 
@@ -74,7 +83,6 @@ public class Enemy2 : MonoBehaviour
 
     private void Flip() {
         FacingRight = !FacingRight;
-
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
@@ -117,10 +125,16 @@ public class Enemy2 : MonoBehaviour
     }
 
     private void Attack() {
-        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
+        Debug.Log(gameObject);
+        Vector3 dir = (player.position - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        foreach (Collider2D player in hitPlayer)
-            player.GetComponent<PlayerController>().TakeDamage(damage);
+        GameObject proj = Instantiate(projectile, transform.position, Quaternion.Euler(new Vector3(0, 0, angle)));
+        //if (splashRange == 0)
+        //proj.GetComponent<ProjectileScript>().damage = damage;
+        proj.GetComponent<Rigidbody2D>().AddForce(dir * proj_speed, ForceMode2D.Impulse);
+        proj.GetComponent<ProjectileScript>().damage = damage;
+
     }
 
     private void OnDrawGizmosSelected() {
