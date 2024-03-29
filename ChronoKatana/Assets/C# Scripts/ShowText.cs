@@ -13,15 +13,33 @@ public class ShowText : MonoBehaviour
     }
 
 
-    public void OnMouseOver()
+    //public void OnMouseOver()
+    //{
+    //    text.SetActive(true);
+    //    GetComponent<SpriteRenderer>().enabled = false;
+    //}
+
+    //public void OnMouseExit()
+    //{
+    //    text.SetActive(false);
+    //    GetComponent<SpriteRenderer>().enabled = true;
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        text.SetActive(true);
-        GetComponent<SpriteRenderer>().enabled = false;
+        if (other.CompareTag("Player"))
+        {
+            text.SetActive(true);
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
-    public void OnMouseExit()
+    private void OnTriggerExit(Collider other)
     {
-        text.SetActive(false);
-        GetComponent<SpriteRenderer>().enabled = true;
+        if (!other.CompareTag("Player"))
+        {
+            text.SetActive(false);
+            GetComponent<SpriteRenderer>().enabled = true;
+        }
     }
 }
