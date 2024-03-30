@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private float cur_hp;
     private Rigidbody2D rb;
     private float HorizontalMove = 0f;
-    private bool FacingRight = true;
+    [SerializeField] private bool FacingRight;
     private bool DoubleJumpEnable = true;
 
     public CameraController camera_controller;
@@ -47,6 +47,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        if (!FacingRight) {
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+
+
         rb = GetComponent<Rigidbody2D>();
         cur_hp = hp;
     }
