@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
 
@@ -40,7 +41,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask notGround;
 
     [SerializeField] private bool _ableDoubleJump;
-    [SerializeField] private bool _ableDash; 
+    [SerializeField] private bool _ableDash;
+
+    [SerializeField] private Slider HPBar;
 
     public void dash_SetTrue() { _ableDash = true; }
     public void doubleJump_SetTrue() { _ableDoubleJump = true; }
@@ -56,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         cur_hp = hp;
+        UpdateHpBar();
     }
 
     void Update()
@@ -112,6 +116,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         cur_hp -= damage;
+        UpdateHpBar();
         Debug.Log(this.name + " hp: " + cur_hp);
         if (cur_hp <= 0)
             Die();
@@ -180,6 +185,11 @@ public class PlayerController : MonoBehaviour
         
 
         rb.velocity = velocity;
+    }
+
+    private void UpdateHpBar()
+    {
+        HPBar.value = (hp - cur_hp) / hp;
     }
 }
 

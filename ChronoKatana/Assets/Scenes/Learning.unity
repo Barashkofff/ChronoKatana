@@ -945,7 +945,7 @@ PrefabInstance:
       objectReference: {fileID: 1081769353}
     - target: {fileID: 2894399343516056656, guid: 8aea77dbf3927e34d8ff1aac4565ccc5, type: 3}
       propertyPath: m_SortingOrder
-      value: 6
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2894399343516056657, guid: 8aea77dbf3927e34d8ff1aac4565ccc5, type: 3}
       propertyPath: m_Pivot.x
@@ -1048,6 +1048,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2894399344780723085, guid: 8aea77dbf3927e34d8ff1aac4565ccc5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324737817507390141, guid: 8aea77dbf3927e34d8ff1aac4565ccc5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675851502855366790, guid: 8aea77dbf3927e34d8ff1aac4565ccc5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675851502855366790, guid: 8aea77dbf3927e34d8ff1aac4565ccc5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675851502855366790, guid: 8aea77dbf3927e34d8ff1aac4565ccc5, type: 3}
       propertyPath: m_AnchorMin.x
       value: 1
       objectReference: {fileID: 0}
@@ -1364,6 +1380,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4725cce136c89f489e142e4137cd133, type: 3}
+--- !u!114 &1674527821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4771885208917318304, guid: 8aea77dbf3927e34d8ff1aac4565ccc5, type: 3}
+  m_PrefabInstance: {fileID: 954215810}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1691407051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,6 +1672,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8517253731979109129, guid: 24078e55f3c4a614bbfe7e7a2387971f, type: 3}
+      propertyPath: HPBar
+      value: 
+      objectReference: {fileID: 1674527821}
     - target: {fileID: 8517253731979109129, guid: 24078e55f3c4a614bbfe7e7a2387971f, type: 3}
       propertyPath: FacingRight
       value: 0
