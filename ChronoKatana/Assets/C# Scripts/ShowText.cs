@@ -6,10 +6,11 @@ public class ShowText : MonoBehaviour
 {
     [SerializeField] GameObject text;
 
+
     void Start()
     {
         text.SetActive(false);
-
+        
     }
 
 
@@ -25,21 +26,38 @@ public class ShowText : MonoBehaviour
     //    GetComponent<SpriteRenderer>().enabled = true;
     //}
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnCollisionStay(Collision collision)
+    //{
+
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        text.SetActive(true);
+    //        GetComponent<SpriteRenderer>().enabled = false;
+    //    }
+    //    else
+    //    {
+    //        text.SetActive(false);
+    //        GetComponent<SpriteRenderer>().enabled = true;
+    //    }
+
+    //}
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
+
+        Debug.Log("asda");
             text.SetActive(true);
-            GetComponent<SpriteRenderer>().enabled = false;
-        }
+            gameObject.GetComponent<SpriteRenderer>().enabled=false;
+        
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (!other.CompareTag("Player"))
-        {
+     
+          
             text.SetActive(false);
-            GetComponent<SpriteRenderer>().enabled = true;
-        }
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+   
+           
     }
 }
