@@ -188,6 +188,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  notGround:
+    serializedVersion: 2
+    m_Bits: 256
+  _ableDoubleJump: 0
+  _ableDash: 0
 --- !u!114 &8517253731979109135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +244,7 @@ MonoBehaviour:
   TimeBar: {fileID: 0}
   slowMoTime: 3
   slowMoOffset: 1
+  _ableSlowMo: 0
 --- !u!1 &8517253732578596529
 GameObject:
   m_ObjectHideFlags: 0

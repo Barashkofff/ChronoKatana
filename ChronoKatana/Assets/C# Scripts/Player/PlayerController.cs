@@ -37,7 +37,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _dashTime = 0.5f;
     [SerializeField] private float _dashSpeed;
     [SerializeField] private AnimationCurve _dashSpeedCurve;
+    [SerializeField] private LayerMask notGround;
 
+    [SerializeField] private bool _ableDoubleJump;
+    [SerializeField] private bool _ableDash; 
+
+    public void dash_SetTrue() { _ableDash = true; }
+    public void doubleJump_SetTrue() { _ableDoubleJump = true; }
 
     void Start()
     {
@@ -54,7 +60,7 @@ public class PlayerController : MonoBehaviour
                 animator.Play("Player_Jump");
                 animator.Play("Legs_Jump");
             }
-            else if (DoubleJumpEnable) {
+            else if (_ableDoubleJump && DoubleJumpEnable) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 DoubleJumpEnable = false;
                 animator.Play("Player_Jump");
@@ -83,11 +89,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
             SceneManager.LoadScene("UI");
         //__________________________________________
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _ableDash)
         {
             //rb.AddForce(new Vector2((GetFacing() ? 1 : -1) * 500, 0), ForceMode2D.Impulse);
             StartCoroutine(Dash(new Vector2(GetFacing() ? 1 : -1, 0)));
-            Debug.Log("Рывок");
         }
         if (_isDashing) return;
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
@@ -121,7 +126,7 @@ public class PlayerController : MonoBehaviour
     }
     private void CheckGround()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y + checkGroundOffsetY), checkGroundRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y + checkGroundOffsetY), checkGroundRadius, ~notGround);
 
         if (colliders.Length > 1)
         {

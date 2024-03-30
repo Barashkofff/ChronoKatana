@@ -23,15 +23,24 @@ public class SlowMo : MonoBehaviour
     private float _timer;
     private bool _onCoolDown = true;
 
+    [SerializeField] private bool _ableSlowMo;
+
+    public void slowMo_SetTrue() { _ableSlowMo = true; TimeBar.gameObject.SetActive(true); }
+
     void Start()
     {
         _timer = slowMoTime;
         TimeBar.value = 0;
+        if (!_ableSlowMo)
+            TimeBar.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!_ableSlowMo)
+            return;
+            
 
         if (Input.GetKey(KeyCode.Mouse1))
         {
