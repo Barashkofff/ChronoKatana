@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TransitCam : MonoBehaviour
 {
+    [SerializeField] private bool _isCamFixed;
     public AnimationCurve curve;
     public Camera mainCam;
-    public GameObject tabletFullRes;
 
     private Camera transitCam;
 
@@ -20,7 +20,8 @@ public class TransitCam : MonoBehaviour
     void Start()
     {
         PlayerController.instance.enabled = false;
-        mainCam.GetComponent<CameraController>().FindPlayer(true);
+        if (!_isCamFixed)
+            mainCam.GetComponent<CameraController>().FindPlayer(true);
 
         transitCam = GetComponent<Camera>();
         startSize = transitCam.orthographicSize;
