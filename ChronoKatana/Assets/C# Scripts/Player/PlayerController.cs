@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _ableDash;
 
     [SerializeField] private Slider HPBar;
+    private bool inMenu = false;
+    public GameObject DiePanel;
 
     public void dash_SetTrue() { _ableDash = true; }
     public void doubleJump_SetTrue() { _ableDoubleJump = true; }
@@ -97,8 +99,10 @@ public class PlayerController : MonoBehaviour
 
 
         //__________________________________________
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) {
             SceneManager.LoadScene("UI");
+        }
+
         //__________________________________________
         if (Input.GetKeyDown(KeyCode.LeftShift) && _ableDash)
         {
@@ -125,7 +129,10 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         gameObject.SetActive(false);
+        DiePanel.SetActive(true);
+        Time.timeScale = 0;
         Debug.Log("You are killed");
+        
     }
 
     private void Flip()
