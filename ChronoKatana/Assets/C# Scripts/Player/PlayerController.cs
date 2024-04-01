@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Slider HPBar;
     private bool inMenu = false;
+    public GameObject MenuPanel;
     public GameObject DiePanel;
 
     public void dash_SetTrue() { _ableDash = true; }
@@ -52,6 +53,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        inMenu = false;
+        Time.timeScale = 1;
         if (!FacingRight) {
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
@@ -100,7 +103,16 @@ public class PlayerController : MonoBehaviour
 
         //__________________________________________
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            SceneManager.LoadScene("UI");
+            if (inMenu) {
+                inMenu = true;
+                MenuPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else {
+                inMenu = false;
+                MenuPanel.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
 
         //__________________________________________
