@@ -42,7 +42,7 @@ public class SlowMo : MonoBehaviour
             return;
             
 
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (_timer > slowMoOffset && _onCoolDown)
             {
@@ -53,7 +53,7 @@ public class SlowMo : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse1) || _timer < 0)
+        if (Input.GetKeyUp(KeyCode.Mouse1) || _timer < 0 || Input.GetKeyUp(KeyCode.LeftControl))
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = Time.timeScale * .02f / 2; //После фикса камеры убрать /2

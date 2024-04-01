@@ -44,12 +44,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _ableDash;
 
     [SerializeField] private Slider HPBar;
+    private bool inMenu = false;
+    public GameObject MenuPanel;
+    public GameObject DiePanel;
 
     public void dash_SetTrue() { _ableDash = true; }
     public void doubleJump_SetTrue() { _ableDoubleJump = true; }
 
     void Start()
     {
+        inMenu = false;
+        Time.timeScale = 1;
         if (!FacingRight) {
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
@@ -97,10 +102,22 @@ public class PlayerController : MonoBehaviour
 
 
         //__________________________________________
-        if (Input.GetKeyDown(KeyCode.Escape))
-            SceneManager.LoadScene("UI");
-        //__________________________________________
-        if (Input.GetKeyDown(KeyCode.LeftShift) && _ableDash)
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (!inMenu) {
+                inMenu = true;
+                MenuPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                inMenu = false;
+                MenuPanel.SetActive(false);
+                Time.timeScale = 1;
+            }
+        }
+
+            //__________________________________________
+            if (Input.GetKeyDown(KeyCode.LeftShift) && _ableDash)
         {
             //rb.AddForce(new Vector2((GetFacing() ? 1 : -1) * 500, 0), ForceMode2D.Impulse);
             StartCoroutine(Dash(new Vector2(GetFacing() ? 1 : -1, 0)));
@@ -125,7 +142,10 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         gameObject.SetActive(false);
+        DiePanel.SetActive(true);
+        Time.timeScale = 0;
         Debug.Log("You are killed");
+        
     }
 
     private void Flip()
@@ -154,6 +174,11 @@ public class PlayerController : MonoBehaviour
         return FacingRight;
     }
 
+    public void ContinueGame() {
+        inMenu = false;
+        MenuPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
 
     private IEnumerator Dash(Vector2 direction)
     {
