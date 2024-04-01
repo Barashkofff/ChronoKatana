@@ -103,20 +103,21 @@ public class PlayerController : MonoBehaviour
 
         //__________________________________________
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (inMenu) {
+            if (!inMenu) {
                 inMenu = true;
                 MenuPanel.SetActive(true);
                 Time.timeScale = 0;
             }
-            else {
+            else
+            {
                 inMenu = false;
                 MenuPanel.SetActive(false);
                 Time.timeScale = 1;
             }
         }
 
-        //__________________________________________
-        if (Input.GetKeyDown(KeyCode.LeftShift) && _ableDash)
+            //__________________________________________
+            if (Input.GetKeyDown(KeyCode.LeftShift) && _ableDash)
         {
             //rb.AddForce(new Vector2((GetFacing() ? 1 : -1) * 500, 0), ForceMode2D.Impulse);
             StartCoroutine(Dash(new Vector2(GetFacing() ? 1 : -1, 0)));
@@ -173,6 +174,11 @@ public class PlayerController : MonoBehaviour
         return FacingRight;
     }
 
+    public void ContinueGame() {
+        inMenu = false;
+        MenuPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
 
     private IEnumerator Dash(Vector2 direction)
     {
