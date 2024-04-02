@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Slider HPBar;
 
+    private Vector2 save_pos;
+    private float save_pos_time = 0.5f;
+    private float save_pos_timer = 0.5f;
     public void dash_SetTrue() { _ableDash = true; }
     public void doubleJump_SetTrue() { _ableDoubleJump = true; }
 
@@ -140,6 +143,14 @@ public class PlayerController : MonoBehaviour
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y + checkGroundOffsetY), checkGroundRadius, ~notGround);
 
+        if (save_pos_timer >= save_pos_time)
+        {
+            if (isGrounded)
+                save_pos = transform.position;
+            save_pos_timer = 0;
+        }
+        save_pos_timer += Time.deltaTime;
+
         if (colliders.Length > 1)
         {
             DoubleJumpEnable = true;
@@ -190,6 +201,20 @@ public class PlayerController : MonoBehaviour
     private void UpdateHpBar()
     {
         HPBar.value = (hp - cur_hp) / hp;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Spikes")
+        {
+            DieFromSpikes();
+        }
+    }
+
+    private void DieFromSpikes()
+    {
+        transform.position = save_pos;
+        TakeDamage(10);
     }
 }
 

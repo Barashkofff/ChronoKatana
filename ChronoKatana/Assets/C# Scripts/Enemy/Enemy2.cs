@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.GraphicsBuffer;
+using System.Linq;
 
 class Enemy2 : MonoBehaviour
 {
@@ -20,6 +21,7 @@ class Enemy2 : MonoBehaviour
     [SerializeField] private float targetDist_x; [SerializeField] private float targetDist_y;
     [SerializeField] private float damage;
     [SerializeField] private float speed;
+    [SerializeField] private bool fixedOnWP;
 
     private int mark_i;
     private float cur_CD = -1;
@@ -43,21 +45,22 @@ class Enemy2 : MonoBehaviour
     void Update() {
         if (cur_CD >= 0)
             cur_CD -= Time.deltaTime;
-
+        CheckTarget();
         if (!is_targeted) {
             Patrol();
             return;
         }
         
-        if (Mathf.Abs(attackPoint.position.x - player.position.x) > attackRange)
-            MoveTo(player.position);
+        if (Mathf.Abs(attackPoint.position.x - player.position.x) > attackRange || !CheckRayCast())
+            MoveToPlayer(player.position);
         else {
-            if (CheckRayCast() && cur_CD < 0) {
+            if (cur_CD < 0) {
                 
                 if ((player.position - transform.position).x > 0 ^ FacingRight)
                     Flip();
                 isAttacking = true;
                 rb.velocity = new Vector2(0, rb.velocity.y);
+                animator.SetFloat("HorizontalMove", 0);
                 animator.Play("PrepAttack");
                 cur_CD = attackCD;
             }
@@ -74,15 +77,45 @@ class Enemy2 : MonoBehaviour
             return false;
     }
 
-    private void MoveTo(Vector2 tar_pos) {
-        if (isAttacking)
+    private void MoveToWP(Vector2 tar_pos) {
+        if (is_targeted)
             return;
         Vector2 targetVec = tar_pos - (Vector2)transform.position;
-        HorizontalMove = Mathf.Sign(targetVec.x);
+        HorizontalMove = targetVec.x;
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
-        rb.velocity = new Vector2(HorizontalMove * speed, rb.velocity.y);
+        rb.velocity = new Vector2(Mathf.Sign(HorizontalMove) * speed, rb.velocity.y);
+    }
+
+    private void MoveToPlayer(Vector2 tar_pos)
+    {
+        float x = FindDistToClosestMark();
+        if (fixedOnWP && x < 0.5)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            animator.SetFloat("HorizontalMove", 0);
+            return;
+        }
+        if (isAttacking)
+            return;
+        Vector2 targetVec = tar_pos - (Vector2)transform.position;
+        HorizontalMove = targetVec.x;
+        animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
+        if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
+            Flip();
+        rb.velocity = new Vector2(Mathf.Sign(HorizontalMove) * speed, rb.velocity.y);
+    }
+
+    private float FindDistToClosestMark()
+    {
+        float res = Mathf.Abs(transform.position.x - patrolMarks[mark_i].position.x);
+        foreach (var mark in patrolMarks)
+        {
+            if (((mark.position.x - transform.position.x) * (mark.position.x - player.position.x)) < 0)
+                return mark.position.x;
+        }
+        return res;
     }
 
     private void Flip() {
@@ -95,10 +128,7 @@ class Enemy2 : MonoBehaviour
     private void Patrol()
     {
         if (patrolMarks.Length == 0)
-        {
-            CheckTarget();
             return;
-        }
             
         if (Mathf.Abs(patrolMarks[mark_i].position.x - transform.position.x) < 0.1f) {
             mark_i++;
@@ -106,8 +136,7 @@ class Enemy2 : MonoBehaviour
                 mark_i = 0;
         }
 
-        CheckTarget();
-        MoveTo(patrolMarks[mark_i].position);
+        MoveToWP(patrolMarks[mark_i].position);
     }
 
     private void CheckTarget() {

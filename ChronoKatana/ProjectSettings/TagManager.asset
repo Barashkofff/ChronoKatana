@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - ShowText
+  - Spikes
   layers:
   - Default
   - TransparentFX
