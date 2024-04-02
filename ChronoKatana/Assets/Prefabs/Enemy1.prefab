@@ -202,6 +202,7 @@ MonoBehaviour:
   targetDist_y: 2
   damage: 4
   speed: 1
+  fixedOnWP: 0
 --- !u!114 &6224041758459567433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,4 +215,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0daf824e5447ca4d99290f4c9ff6b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 8

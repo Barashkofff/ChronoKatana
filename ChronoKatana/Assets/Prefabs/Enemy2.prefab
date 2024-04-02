@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0daf824e5447ca4d99290f4c9ff6b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 6
 --- !u!114 &6328612013422104090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   targetDist_y: 5
   damage: 4
   speed: 0.5
+  fixedOnWP: 0
 --- !u!1 &6328612013806088642
 GameObject:
   m_ObjectHideFlags: 0
