@@ -137,6 +137,7 @@ class Enemy2 : MonoBehaviour
         //if (splashRange == 0)
         //proj.GetComponent<ProjectileScript>().damage = damage;
         proj.GetComponent<Rigidbody2D>().AddForce(dir * proj_speed, ForceMode2D.Impulse);
+        proj.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
         proj.GetComponent<ProjectileScript>().damage = damage;
 
     }
