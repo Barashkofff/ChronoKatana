@@ -9,19 +9,17 @@ public class ShowText : MonoBehaviour
     void Start()
     {
         text.SetActive(false);
-
     }
 
-
-    public void OnMouseOver()
+    private void OnTriggerEnter2D(Collider2D other)
     {
         text.SetActive(true);
-        GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    public void OnMouseExit()
+    private void OnTriggerExit2D(Collider2D other)
     {
         text.SetActive(false);
-        GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
 }

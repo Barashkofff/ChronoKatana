@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - ShowText
+  - Spikes
   layers:
   - Default
   - TransparentFX
@@ -13,8 +16,8 @@ TagManager:
   - UI
   - Enemy
   - Player
-  - 
-  - 
+  - Question
+  - Spikes
   - 
   - 
   - 
