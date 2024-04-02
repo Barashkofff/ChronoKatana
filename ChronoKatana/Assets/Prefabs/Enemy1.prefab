@@ -110,7 +110,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: 951209814, guid: af7618d309a4c97468cf280b638f97d5, type: 3}
+  m_Sprite: {fileID: 1224243711, guid: c9dbb45ccf115b041b7bdd24be29860b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,9 +150,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6224041758459567426}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e163e4bf401898d41a1a620785e20ba4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
-  animator: {fileID: 0}
+  animator: {fileID: 6224041758459567429}
   attackPoint: {fileID: 6224041757943282875}
   attackRange: 0.8
   attackCD: 2

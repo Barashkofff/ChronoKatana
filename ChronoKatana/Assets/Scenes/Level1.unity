@@ -339,6 +339,18 @@ PrefabInstance:
       propertyPath: damage
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6328612013422104090, guid: f120c445a22d9b04480daefb792174c2, type: 3}
+      propertyPath: patrolMarks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328612013422104090, guid: f120c445a22d9b04480daefb792174c2, type: 3}
+      propertyPath: patrolMarks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1296575079}
+    - target: {fileID: 6328612013422104090, guid: f120c445a22d9b04480daefb792174c2, type: 3}
+      propertyPath: patrolMarks.Array.data[1]
+      value: 
+      objectReference: {fileID: 788708533}
     - target: {fileID: 6328612013422104091, guid: f120c445a22d9b04480daefb792174c2, type: 3}
       propertyPath: hp
       value: 4
@@ -634,7 +646,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1336255586}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!19719996 &327919136
 TilemapCollider2D:
@@ -69492,8 +69504,8 @@ MonoBehaviour:
   m_text: "\u0422\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u043B \u0440\u044B\u0432\u043E\u043A
     \xABShift\xBB\n\u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439 \u0435\u0433\u043E"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 298d975a13043704aa617e101cd28241, type: 2}
-  m_sharedMaterial: {fileID: -554430126667049842, guid: 298d975a13043704aa617e101cd28241, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -70399,7 +70411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711834939}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.89, y: 10.6, z: -2.0639555}
+  m_LocalPosition: {x: 2.65, y: 10.6, z: -2.0639555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70430,7 +70442,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730493570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 10.62, z: -2.0639555}
+  m_LocalPosition: {x: 0.315, y: 10.62, z: -2.0639555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70545,7 +70557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788708532}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.01, y: 22.29, z: -2.0639555}
+  m_LocalPosition: {x: 6.77, y: 22.29, z: -2.0639555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70917,7 +70929,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1336255586}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!19719996 &955346597
 TilemapCollider2D:
@@ -70975,7 +70987,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -71595,7 +71607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095144500}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.51, y: 12.55, z: -2.0639555}
+  m_LocalPosition: {x: 18.15, y: 12.55, z: -2.0639555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72119,7 +72131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296575078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.36, y: 22.36, z: -2.0639555}
+  m_LocalPosition: {x: 11.69, y: 22.36, z: -2.0639555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72150,7 +72162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297190240}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.21, y: 12.41, z: -2.0639555}
+  m_LocalPosition: {x: 15.76, y: 12.41, z: -2.0639555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72299,8 +72311,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 327919135}
   - {fileID: 955346596}
+  - {fileID: 327919135}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -72815,6 +72827,18 @@ PrefabInstance:
       propertyPath: damage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: patrolMarks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: patrolMarks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1095144501}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: patrolMarks.Array.data[1]
+      value: 
+      objectReference: {fileID: 1297190241}
     - target: {fileID: 6224041758459567432, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -73463,6 +73487,18 @@ PrefabInstance:
       propertyPath: damage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: patrolMarks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: patrolMarks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1864576033}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: patrolMarks.Array.data[1]
+      value: 
+      objectReference: {fileID: 477858707}
     - target: {fileID: 6224041758459567432, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -73564,6 +73600,18 @@ PrefabInstance:
       propertyPath: damage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: patrolMarks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: patrolMarks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1169486730}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: patrolMarks.Array.data[1]
+      value: 
+      objectReference: {fileID: 1283558429}
     - target: {fileID: 6224041758459567432, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -73754,8 +73802,8 @@ MonoBehaviour:
   m_text: "\u0422\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u043B \u0434\u0432\u043E\u0439\u043D\u043E\u0439
     \u043F\u0440\u044B\u0436\u043E\u043A  "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 298d975a13043704aa617e101cd28241, type: 2}
-  m_sharedMaterial: {fileID: -554430126667049842, guid: 298d975a13043704aa617e101cd28241, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -74659,8 +74707,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\"S\"  \n\u0432\u0437\u0433\u043B\u044F\u0434 \u0432\u043D\u0438\u0437\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 298d975a13043704aa617e101cd28241, type: 2}
-  m_sharedMaterial: {fileID: -554430126667049842, guid: 298d975a13043704aa617e101cd28241, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -74827,6 +74875,18 @@ PrefabInstance:
       propertyPath: damage
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6328612013422104090, guid: f120c445a22d9b04480daefb792174c2, type: 3}
+      propertyPath: patrolMarks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328612013422104090, guid: f120c445a22d9b04480daefb792174c2, type: 3}
+      propertyPath: patrolMarks.Array.data[0]
+      value: 
+      objectReference: {fileID: 2073784560}
+    - target: {fileID: 6328612013422104090, guid: f120c445a22d9b04480daefb792174c2, type: 3}
+      propertyPath: patrolMarks.Array.data[1]
+      value: 
+      objectReference: {fileID: 221192007}
     - target: {fileID: 6328612013422104091, guid: f120c445a22d9b04480daefb792174c2, type: 3}
       propertyPath: hp
       value: 4

@@ -24,6 +24,7 @@ class Enemy2 : MonoBehaviour
     private int mark_i;
     private float cur_CD = -1;
     private bool is_targeted;
+    private bool isAttacking;
 
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
@@ -55,8 +56,9 @@ class Enemy2 : MonoBehaviour
                 
                 if ((player.position - transform.position).x > 0 ^ FacingRight)
                     Flip();
-
-                Attack();
+                isAttacking = true;
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                animator.Play("PrepAttack");
                 cur_CD = attackCD;
             }
         }
@@ -64,7 +66,6 @@ class Enemy2 : MonoBehaviour
 
     private bool CheckRayCast()
     {
-        
         var hit = Physics2D.Raycast(transform.position, (player.position - transform.position).normalized * attackRange, Vector2.Distance(player.position, transform.position), ~IgnoreRC);
         
         if (hit.collider != null)
@@ -74,8 +75,11 @@ class Enemy2 : MonoBehaviour
     }
 
     private void MoveTo(Vector2 tar_pos) {
+        if (isAttacking)
+            return;
         Vector2 targetVec = tar_pos - (Vector2)transform.position;
         HorizontalMove = Mathf.Sign(targetVec.x);
+        animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
         rb.velocity = new Vector2(HorizontalMove * speed, rb.velocity.y);
@@ -124,7 +128,7 @@ class Enemy2 : MonoBehaviour
             is_targeted = false;
     }
 
-    private void Attack() {
+    public void Attack() {
         Debug.Log(gameObject);
         Vector3 dir = (player.position - transform.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -140,4 +144,6 @@ class Enemy2 : MonoBehaviour
     private void OnDrawGizmosSelected() {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
+    public void StopAttack() { isAttacking = false; }
 }

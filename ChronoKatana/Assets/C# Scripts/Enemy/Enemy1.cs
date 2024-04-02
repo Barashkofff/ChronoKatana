@@ -18,6 +18,7 @@ public class Enemy1 : MonoBehaviour
     private int mark_i;
     private float cur_CD = -1;
     private bool is_targeted;
+    private bool isAttacking;
 
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
@@ -53,8 +54,11 @@ public class Enemy1 : MonoBehaviour
     }
 
     private void MoveTo(Vector2 tar_pos) {
+        if (isAttacking)
+            return;
         Vector2 targetVec = tar_pos - (Vector2)transform.position;
         HorizontalMove = Mathf.Sign(targetVec.x);
+        animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
         rb.velocity = new Vector2(HorizontalMove * speed, rb.velocity.y);
@@ -105,6 +109,9 @@ public class Enemy1 : MonoBehaviour
     }
 
     private void Attack() {
+        isAttacking = true;
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        animator.Play("ATTACK");
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
         Debug.Log("att");
         foreach (Collider2D player in hitPlayer)
@@ -116,4 +123,6 @@ public class Enemy1 : MonoBehaviour
         Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y + targetDist_y, 0), new Vector3(transform.position.x + (FacingRight ? targetDist_x : -targetDist_x), transform.position.y + targetDist_y, 0));
         Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - targetDist_y, 0), new Vector3(transform.position.x + (FacingRight ? targetDist_x : -targetDist_x), transform.position.y - targetDist_y, 0));
     }
+
+    public void StopAttack() { isAttacking = false; }
 }
