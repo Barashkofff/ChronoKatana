@@ -64289,12 +64289,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0442\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u043B \u0434\u0432\u043E\u0439\u043D\u043E\u0439
-    \u043F\u0440\u044B\u0436\u043E\u043A(shift) \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439
-    \u0435\u0433\u043E"
+  m_text: "\u0422\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u043B \u0440\u044B\u0432\u043E\u043A
+    \xABShift\xBB\n\u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439 \u0435\u0433\u043E"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4a2a5c34f7851a844bbcd3234c6c98b8, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 4a2a5c34f7851a844bbcd3234c6c98b8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 298d975a13043704aa617e101cd28241, type: 2}
+  m_sharedMaterial: {fileID: -554430126667049842, guid: 298d975a13043704aa617e101cd28241, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -64318,8 +64317,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 0.87
+  m_fontSizeBase: 0.87
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -64354,7 +64353,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.37786293, y: -0.091869295, z: -4.9390354, w: -1.8763533}
+  m_margin: {x: 0.17720222, y: 0.12951148, z: -4.470685, w: -1.8763533}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -64417,7 +64416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
       propertyPath: m_text
-      value: " \u043D\u0430 s \u043C\u043E\u0436\u0435\u0448\u044C \u0432\u0437\u0433\u043B\u044F\u043D\u0443\u0442\u044C
+      value: "\u041D\u0430 \xABS\xBB \u043C\u043E\u0436\u0435\u0448\u044C \u0432\u0437\u0433\u043B\u044F\u043D\u0443\u0442\u044C
         \u0432\u043D\u0438\u0437 \n\n"
       objectReference: {fileID: 0}
     - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
@@ -64429,9 +64428,13 @@ PrefabInstance:
       value: 0.022302983
       objectReference: {fileID: 0}
     - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 298d975a13043704aa617e101cd28241, type: 2}
+    - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 4a2a5c34f7851a844bbcd3234c6c98b8, type: 2}
+      objectReference: {fileID: -554430126667049842, guid: 298d975a13043704aa617e101cd28241, type: 2}
     - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -66472,8 +66475,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
       propertyPath: m_text
-      value: "\u043F\u043E\u043B\u0443\u0447\u0438 \u0441\u0432\u043E\u044E \u043D\u043E\u0432\u043E\u0443\u044E
+      value: "\u041F\u043E\u043B\u0443\u0447\u0438 \u043D\u043E\u0432\u0443\u044E
         \u0441\u043F\u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u044C \u043D\u0430\u0432\u0435\u0440\u0445\u0443"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
+      propertyPath: m_fontSize
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
       propertyPath: m_margin.w
@@ -66489,12 +66496,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
       propertyPath: m_margin.z
-      value: -4.657697
+      value: -4.65771
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 298d975a13043704aa617e101cd28241, type: 2}
+    - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 4a2a5c34f7851a844bbcd3234c6c98b8, type: 2}
+      objectReference: {fileID: -554430126667049842, guid: 298d975a13043704aa617e101cd28241, type: 2}
     - target: {fileID: 3338091937441238787, guid: e30e1a3b2cca4f342a6d68077692b192, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -67394,11 +67413,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0442\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u043B - \u0434\u0432\u043E\u0439\u043D\u043E\u0439
+  m_text: "\u0422\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u043B \u0434\u0432\u043E\u0439\u043D\u043E\u0439
     \u043F\u0440\u044B\u0436\u043E\u043A  "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4a2a5c34f7851a844bbcd3234c6c98b8, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 4a2a5c34f7851a844bbcd3234c6c98b8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 298d975a13043704aa617e101cd28241, type: 2}
+  m_sharedMaterial: {fileID: -554430126667049842, guid: 298d975a13043704aa617e101cd28241, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -67458,7 +67477,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.37786293, y: 0.20444918, z: -4.9390354, w: -1.8763533}
+  m_margin: {x: 0.19152118, y: 0.41187787, z: -4.468595, w: -1.8763533}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -68300,11 +68319,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "                                s - \u0432\u0437\u0433\u043B\u044F\u0434
-    \u0432\u043D\u0438\u0437\n"
+  m_text: "\"S\"  \n\u0432\u0437\u0433\u043B\u044F\u0434 \u0432\u043D\u0438\u0437\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4a2a5c34f7851a844bbcd3234c6c98b8, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 4a2a5c34f7851a844bbcd3234c6c98b8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 298d975a13043704aa617e101cd28241, type: 2}
+  m_sharedMaterial: {fileID: -554430126667049842, guid: 298d975a13043704aa617e101cd28241, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -68364,7 +68382,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.011016607, y: 0.022302985, z: -4.608432, w: -1.3051333}
+  m_margin: {x: 0.28591776, y: 0.43735147, z: -4.4302816, w: -1.0885968}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
