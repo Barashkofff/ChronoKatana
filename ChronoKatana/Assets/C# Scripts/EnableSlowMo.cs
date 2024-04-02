@@ -13,6 +13,8 @@ public class EnableSlowMo : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.tag!="Player")
+            return;
         SlowMo.instance.slowMo_SetTrue();
         text.SetActive(true);
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -20,6 +22,8 @@ public class EnableSlowMo : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.tag != "Player")
+            return;
         text.SetActive(false);
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
