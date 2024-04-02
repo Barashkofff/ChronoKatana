@@ -26,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.K))
         {
             if (!animator.GetBool("IsAttackStart"))
                 animator.Play("Attack_1");

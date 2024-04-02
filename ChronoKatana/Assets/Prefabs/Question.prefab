@@ -373,8 +373,8 @@ MonoBehaviour:
   m_text: "\u0423 \u0441\u0430\u043C\u0443\u0440\u0430\u044F \u043D\u0435\u0442 \u0446\u0435\u043B\u0438\n\u041D\u043E
     \u0435\u0441\u0442\u044C \u0434\u0432\u043E\u0439\u043D\u043E\u0439 \u043F\u0440\u044B\u0436\u043E\u043A"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 298d975a13043704aa617e101cd28241, type: 2}
-  m_sharedMaterial: {fileID: -554430126667049842, guid: 298d975a13043704aa617e101cd28241, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99ac366d840c29c4f8eeb482f6f55859, type: 2}
+  m_sharedMaterial: {fileID: 8101632280526260912, guid: 99ac366d840c29c4f8eeb482f6f55859, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

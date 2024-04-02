@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _ableDash;
 
     [SerializeField] private Slider HPBar;
+    [SerializeField] private LoseMenu _loseMenu;
 
     private Vector2 save_pos;
     private float save_pos_time = 0.5f;
@@ -100,8 +101,7 @@ public class PlayerController : MonoBehaviour
 
 
         //__________________________________________
-        if (Input.GetKeyDown(KeyCode.Escape))
-            SceneManager.LoadScene("UI");
+        
         //__________________________________________
         if (Input.GetKeyDown(KeyCode.LeftShift) && _ableDash)
         {
@@ -128,6 +128,7 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         gameObject.SetActive(false);
+        _loseMenu.Lose();
         Debug.Log("You are killed");
     }
 
