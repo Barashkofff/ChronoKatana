@@ -11,7 +11,6 @@ public class Platform : MonoBehaviour
     [SerializeField] private float speed;
 
     private Vector2 start_pos;
-    private Vector2 fin_pos;
     private Vector2 tar_pos;
     private float _half_width;
 
@@ -20,7 +19,7 @@ public class Platform : MonoBehaviour
     {
         _half_width = GetComponent<BoxCollider2D>().size.x / 2;
         start_pos = transform.position;
-        tar_pos = fin_pos = start_pos + (_vertical ? new Vector2(0, shift) : new Vector2(shift, 0));
+        tar_pos = start_pos + (_vertical ? new Vector2(0, shift) : new Vector2(shift, 0));
     }
 
     // Update is called once per frame
