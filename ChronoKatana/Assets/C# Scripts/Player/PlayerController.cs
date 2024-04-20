@@ -172,6 +172,8 @@ public class PlayerController : MonoBehaviour
         if (direction == Vector2.zero) yield break;
         if (_isDashing) yield break;
 
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 6, true);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 10, true);
         _isDashing = true;
 
         var elapsedTime = 0f;
@@ -184,6 +186,9 @@ public class PlayerController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
+
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 6, false);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 10, false);
         _isDashing = false;
         yield break;
     }
