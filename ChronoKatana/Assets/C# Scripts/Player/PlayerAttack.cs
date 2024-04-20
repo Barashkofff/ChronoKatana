@@ -19,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
     public Transform attackPoint;
     public float attackRange;
     public LayerMask enemyLayers;
+    public LayerMask enemyProjLayers;
 
     [HideInInspector]
     public bool inputReceived = false;
@@ -41,6 +42,10 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
             enemy.GetComponent<EnemyHP>().TakeDamage(damage);
+
+        Collider2D[] deflect = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyProjLayers);
+        foreach (Collider2D proj in deflect)
+            proj.GetComponent<ProjectileScript>().Deflected();
     }
 
 

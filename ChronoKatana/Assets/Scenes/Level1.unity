@@ -145108,6 +145108,9 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
+  enemyProjLayers:
+    serializedVersion: 2
+    m_Bits: 1024
   inputReceived: 0
 --- !u!70 &1247519552
 CapsuleCollider2D:
