@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private bool DoubleJumpEnable = true;
 
     public CameraController camera_controller;
-    public float speed = 1f;
+    public float speed = 10f;
     public float jumpForce = 8f;
     public bool isGrounded = false;
     public float checkGroundOffsetY = -1.8f;
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
 
-        Vector2 targetVelocity = new Vector2(HorizontalMove * 10, rb.velocity.y);
+        Vector2 targetVelocity = new Vector2(HorizontalMove, rb.velocity.y);
         rb.velocity = targetVelocity;
     }
 

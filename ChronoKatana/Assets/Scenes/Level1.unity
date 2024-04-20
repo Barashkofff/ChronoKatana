@@ -144931,7 +144931,7 @@ MonoBehaviour:
   hp: 25
   FacingRight: 1
   camera_controller: {fileID: 710557704}
-  speed: 0.5
+  speed: 5
   jumpForce: 10
   isGrounded: 0
   checkGroundOffsetY: -1
