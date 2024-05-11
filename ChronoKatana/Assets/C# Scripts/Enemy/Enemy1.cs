@@ -140,6 +140,8 @@ public class Enemy1 : MonoBehaviour
     }
 
     private void Attack() {
+        HorizontalMove = 0;
+        animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         isAttacking = true;
         rb.velocity = new Vector2(0, rb.velocity.y);
         animator.Play("ATTACK");
