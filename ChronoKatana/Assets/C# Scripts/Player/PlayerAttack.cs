@@ -41,7 +41,11 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
+        {
             enemy.GetComponent<EnemyHP>().TakeDamage(damage);
+            Vector2 impact_vec = new Vector2((enemy.transform.position.x - transform.position.x) * 4, 2f);
+            enemy.GetComponent<Rigidbody2D>().velocity = impact_vec;
+        }
 
         Collider2D[] deflect = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyProjLayers);
         foreach (Collider2D proj in deflect)

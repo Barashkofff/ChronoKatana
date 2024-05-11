@@ -37,6 +37,7 @@ public class FallingSpike : MonoBehaviour
         float timer = prepare_time;
         while (timer >= 0)
         {
+
             timer -= 0.15f;
             transform.parent.position = new Vector2(start_pos.x + Random.Range(-0.03f, 0.03f), start_pos.y + Random.Range(0, 0.02f));
 

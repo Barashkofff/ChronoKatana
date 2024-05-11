@@ -28,12 +28,14 @@ class Enemy2 : MonoBehaviour
     private bool is_targeted;
     private bool isAttacking;
 
+    private EnemyHP hp_script;
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
     private Rigidbody2D rb;
     private Transform player;
 
     void Start() {
+        hp_script = GetComponent<EnemyHP>();
         rb = GetComponent<Rigidbody2D>();
         player = PlayerController.instance.transform;
     }
@@ -43,6 +45,11 @@ class Enemy2 : MonoBehaviour
     }
 
     void Update() {
+        if (hp_script._Stunned)
+        {
+            animator.SetFloat("HorizontalMove", 0);
+            return;
+        }
         if (cur_CD >= 0)
             cur_CD -= Time.deltaTime;
         CheckTarget();

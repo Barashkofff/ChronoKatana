@@ -142101,6 +142101,7 @@ MonoBehaviour:
   damage: 0
   speed: 0
   fixedOnWP: 0
+  _stunned: 0
 --- !u!61 &601012061
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143214,8 +143215,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: isGrounded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
       propertyPath: attackRange
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: checkGroundRadius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
+      propertyPath: checkGroundOffsetY
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6224041758459567427, guid: 511aee7fd943353419d7b6e6bcdcf1c3, type: 3}
       propertyPath: patrolMarks.Array.size
@@ -149198,6 +149211,10 @@ PrefabInstance:
     - target: {fileID: 6328612013422104080, guid: f120c445a22d9b04480daefb792174c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328612013422104084, guid: f120c445a22d9b04480daefb792174c2, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6328612013422104087, guid: f120c445a22d9b04480daefb792174c2, type: 3}
       propertyPath: m_SortingOrder
