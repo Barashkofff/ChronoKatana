@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 save_pos;
     private float save_pos_time = 0.5f;
     private float save_pos_timer = 0.5f;
+    private float coyoteTime = 0.1f;
+    private float coyoteCounter;
     public void dash_SetTrue() { _ableDash = true; }
     public void doubleJump_SetTrue() { _ableDoubleJump = true; }
 
@@ -71,10 +73,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isGrounded) { 
+            if (coyoteCounter > 0) { 
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 animator.Play("Player_Jump");
                 animator.Play("Legs_Jump");
+                coyoteCounter = 0;
             }
             else if (_ableDoubleJump && DoubleJumpEnable) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -83,6 +86,8 @@ public class PlayerController : MonoBehaviour
                 animator.Play("Legs_Jump");
             }
         }
+
+
 
        
 
@@ -157,9 +162,13 @@ public class PlayerController : MonoBehaviour
         {
             DoubleJumpEnable = true;
             isGrounded = true;
+            coyoteCounter = coyoteTime;
         }
         else
+        {
             isGrounded = false;
+            coyoteCounter -= Time.deltaTime;
+        }
     }
 
     public bool GetFacing()

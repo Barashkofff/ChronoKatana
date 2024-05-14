@@ -145462,7 +145462,7 @@ MonoBehaviour:
   TimeBar: {fileID: 1945817114}
   slowMoTime: 3
   slowMoOffset: 1
-  _ableSlowMo: 0
+  _ableSlowMo: 1
 --- !u!1 &1283558428
 GameObject:
   m_ObjectHideFlags: 0
