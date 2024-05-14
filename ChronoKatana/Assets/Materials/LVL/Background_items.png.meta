@@ -297,10 +297,10 @@ TextureImporter:
       name: Background_items_9
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 257
-        width: 28
-        height: 30
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -465,12 +465,12 @@ TextureImporter:
       name: Background_items_17
       rect:
         serializedVersion: 2
-        x: 32
-        y: 257
-        width: 28
+        x: 192
+        y: 145
+        width: 32
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -930,7 +930,7 @@ TextureImporter:
         x: 3
         y: 130
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -951,7 +951,7 @@ TextureImporter:
         x: 24
         y: 130
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -972,7 +972,7 @@ TextureImporter:
         x: 45
         y: 130
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -993,7 +993,7 @@ TextureImporter:
         x: 68
         y: 130
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1014,7 +1014,7 @@ TextureImporter:
         x: 90
         y: 130
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1035,7 +1035,7 @@ TextureImporter:
         x: 111
         y: 130
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1056,7 +1056,7 @@ TextureImporter:
         x: 131
         y: 130
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1077,7 +1077,7 @@ TextureImporter:
         x: 153
         y: 130
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1098,7 +1098,7 @@ TextureImporter:
         x: 3
         y: 81
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1119,7 +1119,7 @@ TextureImporter:
         x: 24
         y: 81
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1140,7 +1140,7 @@ TextureImporter:
         x: 45
         y: 81
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1161,7 +1161,7 @@ TextureImporter:
         x: 68
         y: 81
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1182,7 +1182,7 @@ TextureImporter:
         x: 90
         y: 81
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1203,7 +1203,7 @@ TextureImporter:
         x: 111
         y: 81
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1224,7 +1224,7 @@ TextureImporter:
         x: 131
         y: 81
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1245,7 +1245,7 @@ TextureImporter:
         x: 153
         y: 81
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1266,7 +1266,7 @@ TextureImporter:
         x: 3
         y: 30
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1287,7 +1287,7 @@ TextureImporter:
         x: 24
         y: 30
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1308,7 +1308,7 @@ TextureImporter:
         x: 45
         y: 30
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1329,7 +1329,7 @@ TextureImporter:
         x: 68
         y: 30
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1347,10 +1347,10 @@ TextureImporter:
       name: Background_items_59
       rect:
         serializedVersion: 2
-        x: 90
+        x: 91
         y: 30
-        width: 17
-        height: 45
+        width: 16
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1368,10 +1368,10 @@ TextureImporter:
       name: Background_items_60
       rect:
         serializedVersion: 2
-        x: 111
+        x: 112
         y: 30
-        width: 17
-        height: 45
+        width: 16
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1392,7 +1392,7 @@ TextureImporter:
         x: 131
         y: 30
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1413,7 +1413,7 @@ TextureImporter:
         x: 153
         y: 30
         width: 16
-        height: 45
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1436,7 +1436,7 @@ TextureImporter:
         width: 7
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1444,6 +1444,69 @@ TextureImporter:
       bones: []
       spriteID: 432382e84a3a8ad4a9b72362f9c9da8e
       internalID: -1930778547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_items_64
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 273
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bebac0af4e8c09442bb3e84e316ed61f
+      internalID: -1510217334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_items_65
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 257
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36efbf074e5936442b2df1470875b4ed
+      internalID: -910479183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_items_66
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 129
+        width: 32
+        height: 16
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cff5abe99ba6134583bf70db6f3f22c
+      internalID: 736307086
       vertices: []
       indices: 
       edges: []
@@ -1487,6 +1550,7 @@ TextureImporter:
       Background_items_61: 1784175062
       Background_items_37: -742551182
       Background_items_17: -1829791854
+      Background_items_66: 736307086
       Background_items_7: 1013261068
       Background_items_27: -1990281036
       Background_items_12: 678615641
@@ -1508,9 +1572,11 @@ TextureImporter:
       Background_items_9: -2120110429
       Background_items_41: 567306068
       Background_items_33: -569597668
+      Background_items_64: -1510217334
       Background_items_24: 1179198676
       Background_items_28: -1921457022
       Background_items_21: 1928925388
+      Background_items_65: -910479183
       Background_items_44: 2009070264
       Background_items_22: 1435126654
       Background_items_3: 1176019682

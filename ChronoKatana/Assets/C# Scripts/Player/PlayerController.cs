@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _dashTime = 0.5f;
     [SerializeField] private float _dashSpeed;
     [SerializeField] private AnimationCurve _dashSpeedCurve;
+    [SerializeField] private Transform legs;
     [SerializeField] private LayerMask notGround;
 
     [SerializeField] private bool _ableDoubleJump;
@@ -169,6 +170,8 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash(Vector2 direction)
     {
+        animator.SetBool("isDashing", true);
+        animator.Play("Legs_Dash");
         if (direction == Vector2.zero) yield break;
         if (_isDashing) yield break;
 
@@ -184,12 +187,13 @@ public class PlayerController : MonoBehaviour
             ApplyVelocity(direction, velocityMultiplier);
 
             elapsedTime += Time.deltaTime;
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForEndOfFrame();
         }
 
         Physics2D.IgnoreLayerCollision(gameObject.layer, 6, false);
         Physics2D.IgnoreLayerCollision(gameObject.layer, 10, false);
         _isDashing = false;
+        animator.SetBool("isDashing", false);
         yield break;
     }
 
@@ -222,5 +226,7 @@ public class PlayerController : MonoBehaviour
         transform.position = save_pos;
         TakeDamage(10);
     }
+
+    public Transform GetLegsTransform() { return legs; }
 }
 
