@@ -145255,7 +145255,7 @@ MonoBehaviour:
   checkGroundOffsetY: -1
   checkGroundRadius: 0.3
   animator: {fileID: 1247519550}
-  _dashTime: 0.2
+  _dashTime: 0.3
   _dashSpeed: 10
   _dashSpeedCurve:
     serializedVersion: 2
