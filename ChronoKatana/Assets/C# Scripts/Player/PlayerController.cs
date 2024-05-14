@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -75,14 +76,16 @@ public class PlayerController : MonoBehaviour
         {
             if (coyoteCounter > 0) { 
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                animator.Play("Player_Jump");
+                if (!animator.GetBool("IsAttackStart"))
+                    animator.Play("Player_Jump");
                 animator.Play("Legs_Jump");
                 coyoteCounter = 0;
             }
             else if (_ableDoubleJump && DoubleJumpEnable) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 DoubleJumpEnable = false;
-                animator.Play("Player_Jump");
+                if (!animator.GetBool("IsAttackStart"))
+                    animator.Play("Player_Jump");
                 animator.Play("Legs_Jump");
             }
         }
@@ -148,7 +151,7 @@ public class PlayerController : MonoBehaviour
     }
     private void CheckGround()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y + checkGroundOffsetY), checkGroundRadius, ~notGround);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y + checkGroundOffsetY), checkGroundRadius, ~notGround).Where(x => !x.isTrigger).ToArray();
 
         if (save_pos_timer >= save_pos_time)
         {
