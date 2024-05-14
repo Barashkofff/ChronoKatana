@@ -47,6 +47,7 @@ class Enemy2 : MonoBehaviour
     void Update() {
         if (hp_script._Stunned)
         {
+            if (isAttacking) { Stun(); }
             animator.SetFloat("HorizontalMove", 0);
             return;
         }
@@ -183,4 +184,10 @@ class Enemy2 : MonoBehaviour
     }
 
     public void StopAttack() { isAttacking = false; }
+
+    public void Stun()
+    {
+        isAttacking = false;
+        animator.Play("ROutlawIDLE");
+    }
 }

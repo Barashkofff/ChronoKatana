@@ -41,6 +41,7 @@ public class Enemy1 : MonoBehaviour
     void Update() {
         if (hp_script._Stunned)
         {
+            if (isAttacking) { Stun(); }
             animator.SetFloat("HorizontalMove", 0);
             return;
         }
@@ -153,10 +154,6 @@ public class Enemy1 : MonoBehaviour
         isAttacking = true;
         rb.velocity = new Vector2(0, rb.velocity.y);
         animator.Play("ATTACK");
-        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
-        Debug.Log("att");
-        foreach (Collider2D player in hitPlayer)
-            player.GetComponent<PlayerController>().TakeDamage(damage);
     }
 
     private void OnDrawGizmosSelected() {
@@ -165,5 +162,19 @@ public class Enemy1 : MonoBehaviour
         Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - targetDist_y, 0), new Vector3(transform.position.x + (FacingRight ? targetDist_x : -targetDist_x), transform.position.y - targetDist_y, 0));
     }
 
-    public void StopAttack() { isAttacking = false; }
+    public void StopAttack() {
+        if (!isAttacking)
+            return;
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
+        Debug.Log("att");
+        foreach (Collider2D player in hitPlayer)
+            player.GetComponent<PlayerController>().TakeDamage(damage);
+        isAttacking = false; 
+    }
+
+    public void Stun()
+    {
+        isAttacking = false;
+        animator.Play("IDLE");
+    }
 }
