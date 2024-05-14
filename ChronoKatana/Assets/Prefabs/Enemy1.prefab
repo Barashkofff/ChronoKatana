@@ -137,7 +137,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 6200000, guid: b8fdca38a9114bc42935186440cd288b, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -171,7 +171,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 6224041758459567426}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: b8fdca38a9114bc42935186440cd288b, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -203,6 +203,12 @@ MonoBehaviour:
   damage: 4
   speed: 1
   fixedOnWP: 0
+  notGround:
+    serializedVersion: 2
+    m_Bits: 0
+  checkGroundOffsetY: -1
+  checkGroundRadius: 0.05
+  isGrounded: 0
 --- !u!114 &6224041758459567433
 MonoBehaviour:
   m_ObjectHideFlags: 0

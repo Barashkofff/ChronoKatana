@@ -20,13 +20,16 @@ public class Enemy1 : MonoBehaviour
     private float cur_CD = -1;
     private bool is_targeted;
     private bool isAttacking;
+    public bool _stunned = false;
 
+    private EnemyHP hp_script;
     private float HorizontalMove = 0f;
     private bool FacingRight = true;
     private Rigidbody2D rb;
     private Transform player;
 
     void Start() {
+        hp_script = GetComponent<EnemyHP>();
         rb = GetComponent<Rigidbody2D>();
         player = PlayerController.instance.transform;
     }
@@ -36,6 +39,12 @@ public class Enemy1 : MonoBehaviour
     }
 
     void Update() {
+        if (hp_script._Stunned)
+        {
+            if (isAttacking) { Stun(); }
+            animator.SetFloat("HorizontalMove", 0);
+            return;
+        }
         if (cur_CD >= 0)
             cur_CD -= Time.deltaTime;
         CheckTarget();
@@ -140,13 +149,11 @@ public class Enemy1 : MonoBehaviour
     }
 
     private void Attack() {
+        HorizontalMove = 0;
+        animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         isAttacking = true;
         rb.velocity = new Vector2(0, rb.velocity.y);
         animator.Play("ATTACK");
-        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
-        Debug.Log("att");
-        foreach (Collider2D player in hitPlayer)
-            player.GetComponent<PlayerController>().TakeDamage(damage);
     }
 
     private void OnDrawGizmosSelected() {
@@ -155,5 +162,19 @@ public class Enemy1 : MonoBehaviour
         Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - targetDist_y, 0), new Vector3(transform.position.x + (FacingRight ? targetDist_x : -targetDist_x), transform.position.y - targetDist_y, 0));
     }
 
-    public void StopAttack() { isAttacking = false; }
+    public void StopAttack() {
+        if (!isAttacking)
+            return;
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
+        Debug.Log("att");
+        foreach (Collider2D player in hitPlayer)
+            player.GetComponent<PlayerController>().TakeDamage(damage);
+        isAttacking = false; 
+    }
+
+    public void Stun()
+    {
+        isAttacking = false;
+        animator.Play("IDLE");
+    }
 }

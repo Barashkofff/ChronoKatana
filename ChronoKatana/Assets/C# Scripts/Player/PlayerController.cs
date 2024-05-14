@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private bool DoubleJumpEnable = true;
 
     public CameraController camera_controller;
-    public float speed = 1f;
+    public float speed = 10f;
     public float jumpForce = 8f;
     public bool isGrounded = false;
     public float checkGroundOffsetY = -1.8f;
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _dashTime = 0.5f;
     [SerializeField] private float _dashSpeed;
     [SerializeField] private AnimationCurve _dashSpeedCurve;
+    [SerializeField] private Transform legs;
     [SerializeField] private LayerMask notGround;
 
     [SerializeField] private bool _ableDoubleJump;
@@ -49,6 +51,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 save_pos;
     private float save_pos_time = 0.5f;
     private float save_pos_timer = 0.5f;
+    private float coyoteTime = 0.1f;
+    private float coyoteCounter;
     public void dash_SetTrue() { _ableDash = true; }
     public void doubleJump_SetTrue() { _ableDoubleJump = true; }
 
@@ -70,18 +74,23 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isGrounded) { 
+            if (coyoteCounter > 0) { 
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                animator.Play("Player_Jump");
+                if (!animator.GetBool("IsAttackStart"))
+                    animator.Play("Player_Jump");
                 animator.Play("Legs_Jump");
+                coyoteCounter = 0;
             }
             else if (_ableDoubleJump && DoubleJumpEnable) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 DoubleJumpEnable = false;
-                animator.Play("Player_Jump");
+                if (!animator.GetBool("IsAttackStart"))
+                    animator.Play("Player_Jump");
                 animator.Play("Legs_Jump");
             }
         }
+
+
 
        
 
@@ -112,7 +121,7 @@ public class PlayerController : MonoBehaviour
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
 
-        Vector2 targetVelocity = new Vector2(HorizontalMove * 10, rb.velocity.y);
+        Vector2 targetVelocity = new Vector2(HorizontalMove, rb.velocity.y);
         rb.velocity = targetVelocity;
     }
 
@@ -142,7 +151,7 @@ public class PlayerController : MonoBehaviour
     }
     private void CheckGround()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y + checkGroundOffsetY), checkGroundRadius, ~notGround);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y + checkGroundOffsetY), checkGroundRadius, ~notGround).Where(x => !x.isTrigger).ToArray();
 
         if (save_pos_timer >= save_pos_time)
         {
@@ -156,9 +165,13 @@ public class PlayerController : MonoBehaviour
         {
             DoubleJumpEnable = true;
             isGrounded = true;
+            coyoteCounter = coyoteTime;
         }
         else
+        {
             isGrounded = false;
+            coyoteCounter -= Time.deltaTime;
+        }
     }
 
     public bool GetFacing()
@@ -169,9 +182,13 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash(Vector2 direction)
     {
+        animator.SetBool("isDashing", true);
+        animator.Play("Legs_Dash");
         if (direction == Vector2.zero) yield break;
         if (_isDashing) yield break;
 
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 6, true);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 10, true);
         _isDashing = true;
 
         var elapsedTime = 0f;
@@ -182,9 +199,13 @@ public class PlayerController : MonoBehaviour
             ApplyVelocity(direction, velocityMultiplier);
 
             elapsedTime += Time.deltaTime;
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForEndOfFrame();
         }
+
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 6, false);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 10, false);
         _isDashing = false;
+        animator.SetBool("isDashing", false);
         yield break;
     }
 
@@ -217,5 +238,7 @@ public class PlayerController : MonoBehaviour
         transform.position = save_pos;
         TakeDamage(10);
     }
+
+    public Transform GetLegsTransform() { return legs; }
 }
 
