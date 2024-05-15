@@ -127,6 +127,8 @@ class Enemy2 : MonoBehaviour
     }
 
     private void Flip() {
+        if (is_targeted && Mathf.Abs(player.position.x - transform.position.x) < 0.5)
+            return;
         FacingRight = !FacingRight;
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
