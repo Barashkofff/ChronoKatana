@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,7 +32,10 @@ public static class Repository
     //Сохранить данные на диск
     public static void SaveState()
     {
-        var serializedState = JsonConvert.SerializeObject(currentState);
+        var serializedState = JsonConvert.SerializeObject(currentState, Formatting.Indented, new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        });
         PlayerPrefs.SetString(GAME_STATE_KEY, serializedState);
     }
 
@@ -57,6 +61,14 @@ public static class Repository
 
         value = default;
         return false;
+    }
+
+    public static void DeleteData<T>()
+    {
+        if (currentState.TryGetValue(typeof(T).Name, out var serializedData))
+        {
+            currentState.Remove(typeof(T).Name);
+        }
     }
 }
 

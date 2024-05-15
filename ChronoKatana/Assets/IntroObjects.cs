@@ -21,6 +21,9 @@ public class IntroObjects : MonoBehaviour
         PlayerController.instance.transform.position = tables[tableInd].position - new Vector3(2, 0, 0);
 
         transCam.Transition();
+
+        EnemySaveLoader esl = new EnemySaveLoader();
+        (esl as ISaveLoader).LoadData();
     }
 
     [ContextMenu("—брос чекпоинтов")]
@@ -31,6 +34,13 @@ public class IntroObjects : MonoBehaviour
             index = 0
         };
         Repository.SetData(data);
+        Repository.SaveState();
+    }
+
+    [ContextMenu("—брос врагов")]
+    public void ResetEnemies()
+    {
+        Repository.DeleteData<EnemyData[]>();
         Repository.SaveState();
     }
 }

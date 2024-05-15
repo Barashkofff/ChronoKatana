@@ -62,6 +62,10 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+        EnemySaveLoader esl = new EnemySaveLoader();
+        (esl as ISaveLoader).SaveData();
+        Repository.SaveState();
+
         Time.timeScale = 1f;
         GameIsPaused = false;
         SceneManager.LoadScene(0);

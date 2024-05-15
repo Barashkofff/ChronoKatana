@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public static class SaveLoadManager
 {
@@ -94,5 +96,52 @@ public sealed class TableIndexSaveLoader : ISaveLoader
             index = indexTable
         };
         Repository.SetData(data);
+    }
+}
+
+[Serializable]
+public struct EnemyData
+{
+    public string _name;
+    public bool _enabled;
+}
+
+public sealed class EnemySaveLoader : ISaveLoader
+{
+    void ISaveLoader.LoadData()
+    {
+        EnemyData[] dataSet;
+        Debug.Log("LoadEnemies1");
+        if (!Repository.TryGetData<EnemyData[]>(out dataSet))
+            return;
+
+        Debug.Log("LoadEnemies2");
+        List<GameObject> list = EnemyController.EnemiesList();
+        for (int i = 0; i < dataSet.Length; i++)
+        {
+            EnemyData data = dataSet[i];
+            GameObject enemy = list.Find(x => x.name == data._name);
+            enemy.SetActive(data._enabled);
+        }
+    }
+
+    void ISaveLoader.SaveData()
+    {
+        List<GameObject> list = EnemyController.EnemiesList();
+        EnemyData[] dataSet = new EnemyData[list.Count];
+        Debug.Log("SaveEnemies");
+        for (int i = 0; i < list.Count; i++)
+        {
+            GameObject enemy = list[i];
+            dataSet[i] = new EnemyData
+            {
+                _name = enemy.name,
+                _enabled = enemy.activeSelf
+            };
+            if (!enemy.activeSelf)
+                Debug.Log(enemy.name + "!!!");
+        }
+        EnemyController.Clear();
+        Repository.SetData(dataSet);
     }
 }

@@ -17,8 +17,14 @@ public class EnemyHP : MonoBehaviour
     private bool _stunned = false;
     public bool _Stunned {  get { return _stunned; } }
 
+    public void Awake()
+    {
+        EnemyController.AddEnemy(gameObject);
+    }
+
     public void OnEnable()
     {
+        
         cur_hp = hp;
     }
 
@@ -45,5 +51,6 @@ public class EnemyHP : MonoBehaviour
     private void Die() {
         gameObject.SetActive(false);
         Debug.Log(this.name + " killed");
+        //SaveLoadManager.SaveGame();
     }
 }

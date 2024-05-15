@@ -142,6 +142,7 @@ public class PlayerController : MonoBehaviour
         gameObject.SetActive(false);
         _loseMenu.Lose();
         Debug.Log("You are killed");
+        SaveLoadManager.SaveGame();
     }
 
     private void Flip()
