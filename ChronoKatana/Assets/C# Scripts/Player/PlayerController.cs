@@ -137,6 +137,12 @@ public class PlayerController : MonoBehaviour
             Die();
     }
 
+    public void Heal(float heal)
+    {
+        cur_hp = (cur_hp + heal > hp) ? hp : cur_hp + heal;
+        UpdateHpBar();
+    }
+
     private void Die()
     {
         gameObject.SetActive(false);

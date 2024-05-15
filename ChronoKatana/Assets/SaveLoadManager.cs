@@ -82,6 +82,13 @@ public sealed class TableIndexSaveLoader : ISaveLoader
     void ISaveLoader.LoadData()
     {
         TableData data;
+
+        if (SceneManager.GetActiveScene().name == "Learning")
+        {
+            PlayerController.instance.CurTable = 0;
+            return;
+        }
+
         if (Repository.TryGetData<TableData>(out data))
             PlayerController.instance.CurTable = data.index;
         else
