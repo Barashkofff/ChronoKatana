@@ -53,8 +53,11 @@ public class PlayerController : MonoBehaviour
     private float save_pos_timer = 0.5f;
     private float coyoteTime = 0.1f;
     private float coyoteCounter;
+
+    private int curTable;
     public void dash_SetTrue() { _ableDash = true; }
     public void doubleJump_SetTrue() { _ableDoubleJump = true; }
+    public int CurTable { get { return curTable; } set { curTable = value; } }
 
     void Start()
     {
