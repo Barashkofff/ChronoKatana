@@ -29,10 +29,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4924960163771098524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.286724, y: -4.466377, z: -9.010152}
+  m_LocalPosition: {x: 0, y: 0, z: -9.010152}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8286767411215924359}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -142,7 +143,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4924960163771098524}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -173,4 +174,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db314ad8d2c4914ebe89730033457e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 4879655088199795315}
   heal: 0
+--- !u!1001 &3005258147655269571
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4924960163771098525}
+    m_Modifications:
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.139093
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7641718161397825200, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_Name
+      value: InteractButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694416094575707588, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+--- !u!1 &4879655088199795315 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7641718161397825200, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+  m_PrefabInstance: {fileID: 3005258147655269571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8286767411215924359 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6535938375954317380, guid: 743e40b3abc4d5d4bb3229fb3e9d3bcd, type: 3}
+  m_PrefabInstance: {fileID: 3005258147655269571}
+  m_PrefabAsset: {fileID: 0}

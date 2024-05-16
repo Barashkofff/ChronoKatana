@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool _ableDoubleJump;
     [SerializeField] private bool _ableDash;
+    [SerializeField] private bool _ableCoolDash;
 
     [SerializeField] private Slider HPBar;
     [SerializeField] private LoseMenu _loseMenu;
@@ -55,7 +56,10 @@ public class PlayerController : MonoBehaviour
     private float coyoteCounter;
 
     private int curTable;
+
+    public bool GetCoolDash() { return _ableCoolDash; }
     public void dash_SetTrue() { _ableDash = true; }
+    public void coolDash_SetTrue() { _ableCoolDash = true; }
     public void doubleJump_SetTrue() { _ableDoubleJump = true; }
     public int CurTable { get { return curTable; } set { curTable = value; } }
 
@@ -197,8 +201,11 @@ public class PlayerController : MonoBehaviour
         if (direction == Vector2.zero) yield break;
         if (_isDashing) yield break;
 
-        Physics2D.IgnoreLayerCollision(gameObject.layer, 6, true);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, 10, true);
+        if (_ableCoolDash)
+        {
+            Physics2D.IgnoreLayerCollision(gameObject.layer, 6, true);
+            Physics2D.IgnoreLayerCollision(gameObject.layer, 10, true);
+        }
         _isDashing = true;
 
         var elapsedTime = 0f;
@@ -212,8 +219,11 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        Physics2D.IgnoreLayerCollision(gameObject.layer, 6, false);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, 10, false);
+        if (_ableCoolDash)
+        {
+            Physics2D.IgnoreLayerCollision(gameObject.layer, 6, false);
+            Physics2D.IgnoreLayerCollision(gameObject.layer, 10, false);
+        }
         _isDashing = false;
         animator.SetBool("isDashing", false);
         yield break;
