@@ -328,6 +328,10 @@ PrefabInstance:
       propertyPath: TimeBar
       value: 
       objectReference: {fileID: 319932138}
+    - target: {fileID: 2736375675119946193, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
+      propertyPath: m_GravityScale
+      value: 2.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2736375675119946194, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
       propertyPath: m_Name
       value: Player 1
@@ -337,9 +341,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2003282334}
     - target: {fileID: 2736375675119946195, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736375675119946195, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
+      propertyPath: _dashTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2736375675119946195, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
       propertyPath: _loseMenu
       value: 
       objectReference: {fileID: 1871686107}
+    - target: {fileID: 2736375675119946195, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
+      propertyPath: _dashSpeed
+      value: 12.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2736375675119946199, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
       propertyPath: m_RootOrder
       value: 2
