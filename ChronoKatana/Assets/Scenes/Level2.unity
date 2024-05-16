@@ -389,6 +389,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 7407384396392682244, guid: fe27f3319f1c7cc4ebcfee6e0e3b3f03, type: 3}
   m_PrefabInstance: {fileID: 608731232}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1162350497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7407384396392682250, guid: fe27f3319f1c7cc4ebcfee6e0e3b3f03, type: 3}
+  m_PrefabInstance: {fileID: 608731232}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea2ec891e4201347984d38ecb781358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1190826659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,6 +439,10 @@ PrefabInstance:
       propertyPath: _dashSpeed
       value: 12.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2736375675119946195, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
+      propertyPath: camera_controller
+      value: 
+      objectReference: {fileID: 1162350497}
     - target: {fileID: 2736375675119946199, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
       propertyPath: m_RootOrder
       value: 2
