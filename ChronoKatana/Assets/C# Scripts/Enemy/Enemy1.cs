@@ -24,7 +24,7 @@ public class Enemy1 : MonoBehaviour
 
     private EnemyHP hp_script;
     private float HorizontalMove = 0f;
-    private bool FacingRight = true;
+    [SerializeField] private bool FacingRight = true;
     private Rigidbody2D rb;
     private Transform player;
 
