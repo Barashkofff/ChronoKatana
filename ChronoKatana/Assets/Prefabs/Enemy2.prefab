@@ -180,7 +180,7 @@ MonoBehaviour:
     m_Bits: 128
   IgnoreRC:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2368
   animator: {fileID: 6328612013422104085}
   attackPoint: {fileID: 6328612013806088643}
   attackRange: 12
@@ -190,6 +190,7 @@ MonoBehaviour:
   damage: 4
   speed: 0.5
   fixedOnWP: 0
+  FacingRight: 1
 --- !u!1 &6328612013806088642
 GameObject:
   m_ObjectHideFlags: 0

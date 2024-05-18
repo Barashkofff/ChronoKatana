@@ -12,6 +12,8 @@ public class ProjectileScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.gameObject);
+        if (other.isTrigger)
+            return;
         switch (other.tag)
         {
             case "Player":

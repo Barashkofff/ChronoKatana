@@ -117,6 +117,8 @@ public sealed class EnemySaveLoader : ISaveLoader
 {
     void ISaveLoader.LoadData()
     {
+        if (SceneManager.GetActiveScene().name == "Learning")
+            return;
         EnemyData[] dataSet;
         Debug.Log("LoadEnemies1");
         if (!Repository.TryGetData<EnemyData[]>(out dataSet))
@@ -128,12 +130,16 @@ public sealed class EnemySaveLoader : ISaveLoader
         {
             EnemyData data = dataSet[i];
             GameObject enemy = list.Find(x => x.name == data._name);
+            if (!data._enabled)
+                Debug.Log("!!!!!!!!!!!" + data._name);
             enemy.SetActive(data._enabled);
         }
     }
 
     void ISaveLoader.SaveData()
     {
+        if (SceneManager.GetActiveScene().name == "Learning")
+            return;
         List<GameObject> list = EnemyController.EnemiesList();
         EnemyData[] dataSet = new EnemyData[list.Count];
         Debug.Log("SaveEnemies");

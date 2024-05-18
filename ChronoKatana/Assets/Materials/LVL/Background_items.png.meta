@@ -467,10 +467,10 @@ TextureImporter:
         serializedVersion: 2
         x: 192
         y: 145
-        width: 32
+        width: 17
         height: 16
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1511,6 +1511,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Background_items_67
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 145
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ae1531ea62fd3468c6480229783f2c
+      internalID: 1482377799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1524,7 +1545,7 @@ TextureImporter:
     nameFileIdTable:
       Background_items_43: -387366969
       Background_items_48: -1127312658
-      Background_items_47: 1942213003
+      Background_items_51: 130117756
       Background_items_8: 403423080
       Background_items_16: -1085381547
       Background_items_60: 583149108
@@ -1572,6 +1593,7 @@ TextureImporter:
       Background_items_9: -2120110429
       Background_items_41: 567306068
       Background_items_33: -569597668
+      Background_items_67: 1482377799
       Background_items_64: -1510217334
       Background_items_24: 1179198676
       Background_items_28: -1921457022
@@ -1588,7 +1610,7 @@ TextureImporter:
       Background_items_1: 699285399
       Background_items_25: -274914334
       Background_items_18: -262853087
-      Background_items_51: 130117756
+      Background_items_47: 1942213003
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

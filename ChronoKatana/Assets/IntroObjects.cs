@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IntroObjects : MonoBehaviour
 {
@@ -19,6 +20,15 @@ public class IntroObjects : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Repository.LoadState();
+        if (SceneManager.GetActiveScene().name == "Learning")
+        {
+            transform.position = tables[0].position;
+            PlayerController.instance.transform.position = tables[0].position - new Vector3(2, 0, 0);
+            tables[0].GetComponent<TabletScript>().UpdateSprite();
+            transCam.Transition();
+            return;
+        }
         SaveLoadManager.LoadGame();
         int tableInd = PlayerController.instance.CurTable;
         Debug.Log("INDEX_LOADED");

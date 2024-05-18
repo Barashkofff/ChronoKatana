@@ -36,6 +36,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        Debug.Log("fdsdfsdf");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -62,9 +63,12 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        EnemySaveLoader esl = new EnemySaveLoader();
-        (esl as ISaveLoader).SaveData();
-        Repository.SaveState();
+        if (SceneManager.GetActiveScene().name != "Learning")
+        {
+            EnemySaveLoader esl = new EnemySaveLoader();
+            (esl as ISaveLoader).SaveData();
+            Repository.SaveState();
+        }
 
         Time.timeScale = 1f;
         GameIsPaused = false;

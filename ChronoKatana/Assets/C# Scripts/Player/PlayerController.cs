@@ -99,12 +99,14 @@ public class PlayerController : MonoBehaviour
 
 
 
-       
 
-        if (Input.GetKeyDown(KeyCode.S))
-            camera_controller.offset.y -= 3;
-        if (Input.GetKeyUp(KeyCode.S))
-            camera_controller.offset.y += 3;
+        if (SceneManager.GetActiveScene().name != "Learning")
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+                camera_controller.offset.y -= 3;
+            if (Input.GetKeyUp(KeyCode.S))
+                camera_controller.offset.y += 3;
+        }
 
         HorizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 
