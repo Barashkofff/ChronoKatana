@@ -181,9 +181,11 @@ class Enemy2 : MonoBehaviour
 
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+#endif
 
     public void StopAttack() { isAttacking = false; }
 
