@@ -25,7 +25,8 @@ public class SlowMo : MonoBehaviour
 
     [SerializeField] private bool _ableSlowMo;
 
-    public void slowMo_SetTrue() { _ableSlowMo = true; TimeBar.gameObject.SetActive(true); }
+    public void slowMo_SetTrue() { _ableSlowMo = true; TimeBar.gameObject.SetActive(true); PlayerController.instance.SaveState(); }
+    public bool GetSlowMo() { return _ableSlowMo; }
 
     void Start()
     {

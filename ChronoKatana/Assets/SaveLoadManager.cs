@@ -130,8 +130,6 @@ public sealed class EnemySaveLoader : ISaveLoader
         {
             EnemyData data = dataSet[i];
             GameObject enemy = list.Find(x => x.name == data._name);
-            if (!data._enabled)
-                Debug.Log("!!!!!!!!!!!" + data._name);
             enemy.SetActive(data._enabled);
         }
     }
@@ -151,10 +149,49 @@ public sealed class EnemySaveLoader : ISaveLoader
                 _name = enemy.name,
                 _enabled = enemy.activeSelf
             };
-            if (!enemy.activeSelf)
-                Debug.Log(enemy.name + "!!!");
         }
         EnemyController.Clear();
         Repository.SetData(dataSet);
     }
 }
+
+[Serializable]
+public struct PlayerData
+{
+    public bool _double_jump;
+    public bool _dash;
+    public bool _slowmo;
+    public bool _cool_dash;
+}
+
+public sealed class PlayerSaveLoader : ISaveLoader
+{
+    void ISaveLoader.LoadData()
+    {
+        if (SceneManager.GetActiveScene().name == "Learning")
+            return;
+        PlayerData data;
+        if (!Repository.TryGetData<PlayerData>(out data))
+            return;
+
+        PlayerController.instance.SetAbles(data._double_jump, data._dash, data._cool_dash);
+        if (data._slowmo)
+            SlowMo.instance.slowMo_SetTrue();
+    }
+
+    void ISaveLoader.SaveData()
+    {
+        if (SceneManager.GetActiveScene().name == "Learning")
+            return;
+
+        PlayerData data = new PlayerData
+        {
+            _double_jump = PlayerController.instance.GetDoubleJump(),
+            _dash = PlayerController.instance.GetDash(),
+            _slowmo = SlowMo.instance.GetSlowMo(),
+            _cool_dash = PlayerController.instance.GetCoolDash()
+        };
+        Repository.SetData(data);
+    }
+}
+

@@ -27,7 +27,7 @@ public class FallingSpike : MonoBehaviour
         if (_triggered)
             return;
 
-        if (Mathf.Abs(transform.position.x - player_pos.position.x) < trigger_dist && Mathf.Abs(transform.position.y - player_pos.position.y) < 10)
+        if (Mathf.Abs(transform.position.x - player_pos.position.x) < trigger_dist && Mathf.Abs(transform.position.y - player_pos.position.y) < 10 && transform.position.y > player_pos.position.y)
             StartCoroutine(Fall());
     }
 

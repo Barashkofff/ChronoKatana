@@ -57,11 +57,23 @@ public class PlayerController : MonoBehaviour
 
     private int curTable;
 
+    public bool GetDoubleJump() { return _ableDoubleJump; }
+    public bool GetDash() { return _ableDash; }
     public bool GetCoolDash() { return _ableCoolDash; }
-    public void dash_SetTrue() { _ableDash = true; }
-    public void coolDash_SetTrue() { _ableCoolDash = true; }
-    public void doubleJump_SetTrue() { _ableDoubleJump = true; }
+    public void dash_SetTrue() { _ableDash = true; SaveState(); }
+    public void coolDash_SetTrue() { _ableCoolDash = true; SaveState(); }
+    public void doubleJump_SetTrue() { _ableDoubleJump = true; SaveState(); }
+
+    public void SaveState()
+    {
+        PlayerSaveLoader psl = new PlayerSaveLoader();
+        (psl as ISaveLoader).SaveData();
+        Repository.SaveState();
+    }
+
     public int CurTable { get { return curTable; } set { curTable = value; } }
+
+    public void SetAbles(bool dj, bool d, bool cd) { _ableDoubleJump = dj; _ableDash = d; _ableCoolDash = cd; }
 
     void Start()
     {
@@ -75,6 +87,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cur_hp = hp;
         UpdateHpBar();
+
+        Repository.LoadState();
+        PlayerSaveLoader psl = new PlayerSaveLoader();
+        (psl as ISaveLoader).LoadData();
     }
 
     void Update()
