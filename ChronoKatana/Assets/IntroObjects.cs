@@ -39,6 +39,23 @@ public class IntroObjects : MonoBehaviour
 
         EnemySaveLoader esl = new EnemySaveLoader();
         (esl as ISaveLoader).LoadData();
+
+        if (!Repository.TryGetData<TableData>(out TableData data) && SceneManager.GetActiveScene().name != "Level1") 
+        { 
+            End.instance.fadePanel.enabled = true;
+
+            var datax = new TableData
+            {
+                index = 0
+            };
+            Repository.SetData(data);
+        }
+        Debug.Log("22");
+        LevelSaveLoader levelSaveLoader = new LevelSaveLoader();
+        (levelSaveLoader as ISaveLoader).SaveData();
+
+        Repository.SaveState();
+        Debug.Log("2222");
     }
 
     public void UpdateTables()
@@ -52,11 +69,14 @@ public class IntroObjects : MonoBehaviour
     [ContextMenu("—брос чекпоинтов")]
     public void ResetSpawn()
     {
-        var data = new TableData
-        {
-            index = 0
-        };
-        Repository.SetData(data);
+        Repository.DeleteData<TableData>();
+        Repository.SaveState();
+    }
+
+    [ContextMenu("—брос уровн€")]
+    public void ResetLevel()
+    {
+        Repository.DeleteData<LevelData>();
         Repository.SaveState();
     }
 
@@ -65,5 +85,21 @@ public class IntroObjects : MonoBehaviour
     {
         Repository.DeleteData<EnemyData[]>();
         Repository.SaveState();
+    }
+
+    [ContextMenu("—брос способностей")]
+    public void ResetAbilities()
+    {
+        Repository.DeleteData<PlayerData>();
+        Repository.SaveState();
+    }
+
+    [ContextMenu("—брос всего")]
+    public void ResetAll()
+    {
+        ResetSpawn();
+        ResetEnemies();
+        ResetAbilities();
+        ResetLevel();
     }
 }

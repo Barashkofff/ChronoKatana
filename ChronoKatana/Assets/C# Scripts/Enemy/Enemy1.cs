@@ -88,7 +88,6 @@ public class Enemy1 : MonoBehaviour
             return;
         Vector2 targetVec = tar_pos - (Vector2)transform.position;
         HorizontalMove = targetVec.x;
-        Debug.Log("fdssdfsdfsdgsdgsd");
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();

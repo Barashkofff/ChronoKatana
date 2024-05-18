@@ -57,12 +57,16 @@ public sealed class LevelSaveLoader : ISaveLoader
         if (Repository.TryGetData<LevelData>(out data))
             SceneManager.LoadScene(data.sceneName);
         else
+        {
             SceneManager.LoadScene("Level1");
+            Debug.Log("√ƒ≈ “€ ¡Àﬂ“‹");
+        }
     }
 
     void ISaveLoader.SaveData()
     {
         string level = SceneManager.GetActiveScene().name;
+        Debug.Log("¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿ " + level);
         var data = new LevelData
         {
             sceneName = level
@@ -93,6 +97,8 @@ public sealed class TableIndexSaveLoader : ISaveLoader
             PlayerController.instance.CurTable = data.index;
         else
             PlayerController.instance.CurTable = 0;
+
+        Debug.Log(PlayerController.instance.CurTable);
     }
 
     void ISaveLoader.SaveData()
