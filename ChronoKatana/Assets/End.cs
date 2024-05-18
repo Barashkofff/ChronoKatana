@@ -24,6 +24,7 @@ public class End : MonoBehaviour
             Repository.DeleteData<TableData>();
             Repository.DeleteData<PlayerData>();
             Repository.SaveState();
+            EnemyController.Clear();
             fadePanel.Play("FadeIn");
         }
     }

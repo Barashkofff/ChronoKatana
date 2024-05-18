@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Learning()
     {
-        SceneManager.LoadScene("Learning");
+        SceneManager.LoadScene("Learning", LoadSceneMode.Single);
     }
 
     public void ExitGame()

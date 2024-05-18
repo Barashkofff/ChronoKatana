@@ -56,21 +56,22 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         AudioListener.pause = false;
     }
 
 
     public void LoadMenu()
     {
+        Time.timeScale = 1f;
+        Repository.LoadState();
         if (SceneManager.GetActiveScene().name != "Learning")
         {
             EnemySaveLoader esl = new EnemySaveLoader();
             (esl as ISaveLoader).SaveData();
             Repository.SaveState();
         }
-
-        Time.timeScale = 1f;
+        Debug.Log("ffdsfds");
         GameIsPaused = false;
         SceneManager.LoadScene("UI", LoadSceneMode.Single);
         AudioListener.pause = false;

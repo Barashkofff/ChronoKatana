@@ -55,10 +55,10 @@ public sealed class LevelSaveLoader : ISaveLoader
     {
         LevelData data;
         if (Repository.TryGetData<LevelData>(out data))
-            SceneManager.LoadScene(data.sceneName);
+            SceneManager.LoadScene(data.sceneName, LoadSceneMode.Single);
         else
         {
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Level1", LoadSceneMode.Single);
             Debug.Log("√ƒ≈ “€ ¡Àﬂ“‹");
         }
     }
@@ -146,15 +146,18 @@ public sealed class EnemySaveLoader : ISaveLoader
             return;
         List<GameObject> list = EnemyController.EnemiesList();
         EnemyData[] dataSet = new EnemyData[list.Count];
-        Debug.Log("SaveEnemies");
+        Debug.Log(list.Count);
         for (int i = 0; i < list.Count; i++)
         {
+            Debug.Log(i);
             GameObject enemy = list[i];
+            Debug.Log(i + " " + i);
             dataSet[i] = new EnemyData
             {
                 _name = enemy.name,
                 _enabled = enemy.activeSelf
             };
+            Debug.Log(i);
         }
         EnemyController.Clear();
         Repository.SetData(dataSet);
