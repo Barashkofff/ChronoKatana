@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1 : MonoBehaviour
+public class Samurai1 : MonoBehaviour
 {
     [SerializeField] private Transform[] patrolMarks;
     [SerializeField] private LayerMask layerMask;
@@ -28,35 +27,43 @@ public class Enemy1 : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
 
-    void Start() {
+    void Start()
+    {
         hp_script = GetComponent<EnemyHP>();
         rb = GetComponent<Rigidbody2D>();
         player = PlayerController.instance.transform;
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         cur_CD = attackCD;
     }
 
-    void Update() {
+    void Update()
+    {
         if (hp_script._Stunned)
-        {
             if (isAttacking) { Stun(); }
-            animator.SetFloat("HorizontalMove", 0);
-            return;
-        }
+        //if (hp_script._Stunned)
+        //{
+        //    if (isAttacking) { Stun(); }
+        //    animator.SetFloat("HorizontalMove", 0);
+        //    return;
+        //}
         if (cur_CD >= 0)
             cur_CD -= Time.deltaTime;
         CheckTarget();
-        if (!is_targeted) {
+        if (!is_targeted)
+        {
             Patrol();
             return;
         }
-        
+        Debug.Log(2);
         if (Mathf.Abs(attackPoint.position.x - player.position.x) > attackRange)
             MoveToPlayer(player.position);
-        else {
-            if (cur_CD < 0) {
+        else
+        {
+            if (cur_CD < 0)
+            {
                 Attack();
                 cur_CD = attackCD;
             }
@@ -77,17 +84,23 @@ public class Enemy1 : MonoBehaviour
 
     private void MoveToPlayer(Vector2 tar_pos)
     {
-        float x = FindDistToClosestMark();
-        if (fixedOnWP && x < 0.5)
+        Debug.Log(3);
+        
+        if (fixedOnWP)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            animator.SetFloat("HorizontalMove", 0);
-            return;
+            float x = FindDistToClosestMark();
+            if (x < 0.5f)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                animator.SetFloat("HorizontalMove", 0);
+                return;
+            }
         }
         if (isAttacking)
             return;
         Vector2 targetVec = tar_pos - (Vector2)transform.position;
         HorizontalMove = targetVec.x;
+        Debug.Log(HorizontalMove);
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
@@ -102,12 +115,13 @@ public class Enemy1 : MonoBehaviour
             if (((mark.position.x - transform.position.x) * (mark.position.x - player.position.x)) < 0)
                 return mark.position.x;
         }
-        
+
         return res;
     }
 
 
-    private void Flip() {
+    private void Flip()
+    {
         if (is_targeted && Mathf.Abs(player.position.x - transform.position.x) < 0.5)
             return;
         FacingRight = !FacingRight;
@@ -121,8 +135,9 @@ public class Enemy1 : MonoBehaviour
     {
         if (patrolMarks.Length == 0)
             return;
-            
-        if (Mathf.Abs(patrolMarks[mark_i].position.x - transform.position.x) < 0.1f) {
+
+        if (Mathf.Abs(patrolMarks[mark_i].position.x - transform.position.x) < 0.1f)
+        {
             mark_i++;
             if (mark_i == patrolMarks.Length)
                 mark_i = 0;
@@ -131,7 +146,8 @@ public class Enemy1 : MonoBehaviour
         MoveToWP(patrolMarks[mark_i].position);
     }
 
-    private void CheckTarget() {
+    private void CheckTarget()
+    {
         Vector2 tarToVec = player.transform.position - transform.position;
         if (Mathf.Abs(tarToVec.y) < targetDist_y * 0.5f && Mathf.Abs(tarToVec.x) < targetDist_x * 0.5f)
         {
@@ -143,32 +159,28 @@ public class Enemy1 : MonoBehaviour
             is_targeted = true;
             return;
         }
-        
+
 
         if (Mathf.Abs(tarToVec.y) > targetDist_y * 2 && Mathf.Abs(tarToVec.x) > targetDist_x * 2)
             is_targeted = false;
     }
 
-    private void Attack() {
+    private void Attack()
+    {
         HorizontalMove = 0;
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         isAttacking = true;
         rb.velocity = new Vector2(0, rb.velocity.y);
-        animator.Play("ATTACK");
-        
+        animator.Play("Attack");
+
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
+        Debug.Log("att");
+        foreach (Collider2D player in hitPlayer)
+            player.GetComponent<PlayerController>().TakeDamage(damage);
     }
 
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected() {
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-        Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y + targetDist_y, 0), new Vector3(transform.position.x + (FacingRight ? targetDist_x : -targetDist_x), transform.position.y + targetDist_y, 0));
-        Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - targetDist_y, 0), new Vector3(transform.position.x + (FacingRight ? targetDist_x : -targetDist_x), transform.position.y - targetDist_y, 0));
-    }
-#endif
-    public void StopAttack()
+    public void Attack2()
     {
-        if (!isAttacking)
-            return;
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
         Debug.Log("att");
         foreach (Collider2D player in hitPlayer)
@@ -176,10 +188,19 @@ public class Enemy1 : MonoBehaviour
         isAttacking = false;
     }
 
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y + targetDist_y, 0), new Vector3(transform.position.x + (FacingRight ? targetDist_x : -targetDist_x), transform.position.y + targetDist_y, 0));
+        Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - targetDist_y, 0), new Vector3(transform.position.x + (FacingRight ? targetDist_x : -targetDist_x), transform.position.y - targetDist_y, 0));
+    }
+#endif
 
+    
     public void Stun()
     {
         isAttacking = false;
-        animator.Play("IDLE");
+        animator.Play("Idle");
     }
 }
