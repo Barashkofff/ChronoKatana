@@ -77,7 +77,7 @@ class Enemy2 : MonoBehaviour
 
     private bool CheckRayCast()
     {
-        var hit = Physics2D.Raycast(transform.position, (player.position - transform.position).normalized * attackRange, Vector2.Distance(player.position, transform.position), ~IgnoreRC);
+        var hit = Physics2D.Raycast(transform.position, (player.position - attackPoint.position).normalized * attackRange, Vector2.Distance(player.position, transform.position), ~IgnoreRC);
         
         if (hit.collider != null)
             return hit.collider.gameObject == player.gameObject;
@@ -176,7 +176,7 @@ class Enemy2 : MonoBehaviour
         //if (splashRange == 0)
         //proj.GetComponent<ProjectileScript>().damage = damage;
         proj.GetComponent<Rigidbody2D>().AddForce(dir * proj_speed, ForceMode2D.Impulse);
-        proj.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+        //proj.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
         proj.GetComponent<ProjectileScript>().damage = damage;
 
     }

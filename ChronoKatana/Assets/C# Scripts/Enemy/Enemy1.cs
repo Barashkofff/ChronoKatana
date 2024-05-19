@@ -155,7 +155,6 @@ public class Enemy1 : MonoBehaviour
         isAttacking = true;
         rb.velocity = new Vector2(0, rb.velocity.y);
         animator.Play("ATTACK");
-        
     }
 
 #if UNITY_EDITOR

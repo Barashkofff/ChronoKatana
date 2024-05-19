@@ -57,8 +57,7 @@ public class Samurai1 : MonoBehaviour
             Patrol();
             return;
         }
-        Debug.Log(2);
-        if (Mathf.Abs(attackPoint.position.x - player.position.x) > attackRange)
+        if (Mathf.Abs(attackPoint.position.x - player.position.x) > attackRange && !isAttacking)
             MoveToPlayer(player.position);
         else
         {
@@ -84,8 +83,6 @@ public class Samurai1 : MonoBehaviour
 
     private void MoveToPlayer(Vector2 tar_pos)
     {
-        Debug.Log(3);
-        
         if (fixedOnWP)
         {
             float x = FindDistToClosestMark();
@@ -100,7 +97,6 @@ public class Samurai1 : MonoBehaviour
             return;
         Vector2 targetVec = tar_pos - (Vector2)transform.position;
         HorizontalMove = targetVec.x;
-        Debug.Log(HorizontalMove);
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
@@ -171,8 +167,11 @@ public class Samurai1 : MonoBehaviour
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         isAttacking = true;
         rb.velocity = new Vector2(0, rb.velocity.y);
-        animator.Play("Attack");
+        animator.Play("StartAttack");
+    }
 
+    public void Attack1()
+    {
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
         Debug.Log("att");
         foreach (Collider2D player in hitPlayer)
