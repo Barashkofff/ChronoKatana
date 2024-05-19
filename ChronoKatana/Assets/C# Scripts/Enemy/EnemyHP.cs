@@ -7,11 +7,11 @@ using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
-    const float STUN_CD = 0.7f;
+    public float STUN_CD = 0.7f;
 
     [SerializeField] private float hp;
 
-    private float stun_time = STUN_CD;
+    private float stun_time;
     private Rigidbody2D rb;
     private float cur_hp;
     private bool _stunned = false;
@@ -24,7 +24,7 @@ public class EnemyHP : MonoBehaviour
 
     public void OnEnable()
     {
-        
+        stun_time = STUN_CD;
         cur_hp = hp;
     }
 

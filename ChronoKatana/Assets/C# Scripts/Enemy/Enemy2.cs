@@ -72,12 +72,14 @@ class Enemy2 : MonoBehaviour
                 animator.Play("PrepAttack");
                 cur_CD = attackCD;
             }
+            else
+                MoveToPlayer(player.position);
         }
     }
 
     private bool CheckRayCast()
     {
-        var hit = Physics2D.Raycast(transform.position, (player.position - transform.position).normalized * attackRange, Vector2.Distance(player.position, transform.position), ~IgnoreRC);
+        var hit = Physics2D.Raycast(transform.position, (player.position - attackPoint.position).normalized * attackRange, Vector2.Distance(player.position, transform.position), ~IgnoreRC);
         
         if (hit.collider != null)
             return hit.collider.gameObject == player.gameObject;
@@ -98,12 +100,16 @@ class Enemy2 : MonoBehaviour
 
     private void MoveToPlayer(Vector2 tar_pos)
     {
-        float x = FindDistToClosestMark();
-        if (fixedOnWP && x < 0.5)
+        
+        if (fixedOnWP)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            animator.SetFloat("HorizontalMove", 0);
-            return;
+            float x = FindDistToClosestMark();
+            if (x < 0.5)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                animator.SetFloat("HorizontalMove", 0);
+                return;
+            }
         }
         if (isAttacking)
             return;
@@ -176,7 +182,7 @@ class Enemy2 : MonoBehaviour
         //if (splashRange == 0)
         //proj.GetComponent<ProjectileScript>().damage = damage;
         proj.GetComponent<Rigidbody2D>().AddForce(dir * proj_speed, ForceMode2D.Impulse);
-        proj.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+        //proj.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
         proj.GetComponent<ProjectileScript>().damage = damage;
 
     }

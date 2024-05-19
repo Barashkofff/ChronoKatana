@@ -152,6 +152,8 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (_isDashing)
+            return;
         cur_hp -= damage;
         UpdateHpBar();
         Debug.Log(this.name + " hp: " + cur_hp);
@@ -214,17 +216,20 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash(Vector2 direction)
     {
-        animator.SetBool("isDashing", true);
-        animator.Play("Legs_Dash");
         if (direction == Vector2.zero) yield break;
         if (_isDashing) yield break;
 
+        Debug.Log(_ableCoolDash);
         if (_ableCoolDash)
         {
+            Debug.Log("LLLLLLLL " + gameObject.layer);
             Physics2D.IgnoreLayerCollision(gameObject.layer, 6, true);
             Physics2D.IgnoreLayerCollision(gameObject.layer, 10, true);
         }
         _isDashing = true;
+
+        animator.SetBool("isDashing", true);
+        animator.Play("Legs_Dash");
 
         var elapsedTime = 0f;
         while (elapsedTime < _dashTime)
