@@ -35,6 +35,8 @@ class Enemy2 : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
 
+    [SerializeField] private AudioSource audioSource;
+
     void Start() {
         hp_script = GetComponent<EnemyHP>();
         rb = GetComponent<Rigidbody2D>();

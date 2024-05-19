@@ -49,6 +49,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Slider HPBar;
     [SerializeField] private LoseMenu _loseMenu;
 
+    [SerializeField] private AudioSource walk;
+    [SerializeField] private AudioSource dsh;
+    [SerializeField] private AudioSource jmp;
+    [SerializeField] private AudioSource dmg_s;
+
     private Vector2 save_pos;
     private float save_pos_time = 0.5f;
     private float save_pos_timer = 0.5f;
@@ -102,6 +107,7 @@ public class PlayerController : MonoBehaviour
                 if (!animator.GetBool("IsAttackStart"))
                     animator.Play("Player_Jump");
                 animator.Play("Legs_Jump");
+                jmp.Play();
                 coyoteCounter = 0;
             }
             else if (_ableDoubleJump && DoubleJumpEnable) {
@@ -110,6 +116,7 @@ public class PlayerController : MonoBehaviour
                 if (!animator.GetBool("IsAttackStart"))
                     animator.Play("Player_Jump");
                 animator.Play("Legs_Jump");
+                jmp.Play();
             }
         }
 
@@ -125,7 +132,15 @@ public class PlayerController : MonoBehaviour
         }
 
         HorizontalMove = Input.GetAxisRaw("Horizontal") * speed;
-
+        if (HorizontalMove == 0) 
+        {
+            walk.Stop();
+        }
+        else
+        {
+            if (!walk.isPlaying)
+                walk.Play();
+        }
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
 
         animator.SetBool("InAir", !isGrounded);
@@ -154,6 +169,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isDashing)
             return;
+        dmg_s.Play();
         cur_hp -= damage;
         UpdateHpBar();
         Debug.Log(this.name + " hp: " + cur_hp);
@@ -219,6 +235,7 @@ public class PlayerController : MonoBehaviour
         if (direction == Vector2.zero) yield break;
         if (_isDashing) yield break;
 
+        dsh.Play();
         Debug.Log(_ableCoolDash);
         if (_ableCoolDash)
         {

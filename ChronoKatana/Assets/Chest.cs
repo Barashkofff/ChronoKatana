@@ -11,6 +11,8 @@ public class Chest : MonoBehaviour
     private bool opened;
     private Animator animator;
 
+    [SerializeField] private AudioSource opn;
+
     public bool Opened { get { return opened; }  }
 
     public void Open()
@@ -18,6 +20,7 @@ public class Chest : MonoBehaviour
         opened = true;
         animator.SetTrigger("Open");
 
+        opn.Play();
         if (itemPrefab != null)
         {
             StartCoroutine(Drop());

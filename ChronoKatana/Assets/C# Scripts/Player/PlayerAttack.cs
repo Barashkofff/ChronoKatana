@@ -24,6 +24,8 @@ public class PlayerAttack : MonoBehaviour
     [HideInInspector]
     public bool inputReceived = false;
 
+    [SerializeField] private AudioSource att;
+
 
     void Update()
     {
@@ -38,12 +40,13 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
+        att.Play();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<EnemyHP>().TakeDamage(damage);
-            Vector2 impact_vec = new Vector2((enemy.transform.position.x - transform.position.x) * 4, 2f);
+            Vector2 impact_vec = new Vector2(Mathf.Sign(enemy.transform.position.x - transform.position.x) * 4, 2f);
             enemy.GetComponent<Rigidbody2D>().velocity = impact_vec;
         }
 

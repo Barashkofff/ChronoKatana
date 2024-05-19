@@ -14,14 +14,20 @@ public class EnableDash : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerController.instance.dash_SetTrue();
-        text.SetActive(true);
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        if (other.CompareTag("Player"))
+        { 
+            PlayerController.instance.dash_SetTrue();
+            text.SetActive(true);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        text.SetActive(false);
-        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        if (other.CompareTag("Player"))
+        {
+            text.SetActive(false);
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        }
     }
 }

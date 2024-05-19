@@ -36,6 +36,8 @@ public class Samurai1 : MonoBehaviour
     [SerializeField] private GameObject[] ranges;
     [SerializeField] private GameObject end_panel;
 
+    [SerializeField] private AudioSource audioSource;
+
     void Start()
     {
         phase_cd = attackCD * 2;
@@ -199,6 +201,7 @@ public class Samurai1 : MonoBehaviour
 
     public void Attack1()
     {
+        audioSource.Play();
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
         Debug.Log("att");
         foreach (Collider2D player in hitPlayer)
@@ -207,6 +210,7 @@ public class Samurai1 : MonoBehaviour
 
     public void Attack2()
     {
+        audioSource.Play();
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
         Debug.Log("att");
         foreach (Collider2D player in hitPlayer)

@@ -28,6 +28,8 @@ public class Enemy1 : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
 
+    [SerializeField] private AudioSource audioSource;
+
     void Start() {
         hp_script = GetComponent<EnemyHP>();
         rb = GetComponent<Rigidbody2D>();
@@ -170,6 +172,7 @@ public class Enemy1 : MonoBehaviour
 #endif
     public void StopAttack()
     {
+        audioSource.Play();
         if (!isAttacking)
             return;
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);

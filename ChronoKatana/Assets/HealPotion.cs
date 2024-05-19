@@ -13,6 +13,8 @@ public class HealPotion : MonoBehaviour
     private Animator button_animator;
     private bool _isTrigger = false;
 
+    [SerializeField] private AudioSource audioSource;
+
     private void Start()
     {
         button_animator = button.GetComponent<Animator>();
@@ -35,6 +37,7 @@ public class HealPotion : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            audioSource.Play();
             button_animator.SetBool("Enable", false);
             StartCoroutine(GoToPlayer());
         }
@@ -61,6 +64,7 @@ public class HealPotion : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+        
         PlayerController.instance.Heal(heal);
         gameObject.SetActive(false);
     }
