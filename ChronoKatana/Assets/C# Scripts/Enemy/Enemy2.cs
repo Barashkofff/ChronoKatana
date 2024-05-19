@@ -22,6 +22,7 @@ class Enemy2 : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private bool fixedOnWP;
+    [SerializeField] private bool rotatable;
 
     private int mark_i;
     private float cur_CD = -1;
@@ -182,7 +183,8 @@ class Enemy2 : MonoBehaviour
         //if (splashRange == 0)
         //proj.GetComponent<ProjectileScript>().damage = damage;
         proj.GetComponent<Rigidbody2D>().AddForce(dir * proj_speed, ForceMode2D.Impulse);
-        //proj.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+        if (rotatable)
+            proj.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
         proj.GetComponent<ProjectileScript>().damage = damage;
 
     }

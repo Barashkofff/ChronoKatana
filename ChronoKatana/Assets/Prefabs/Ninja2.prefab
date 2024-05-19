@@ -222,4 +222,5 @@ MonoBehaviour:
   damage: 4
   speed: 3
   fixedOnWP: 0
+  rotatable: 1
   FacingRight: 1

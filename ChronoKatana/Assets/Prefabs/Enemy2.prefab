@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0daf824e5447ca4d99290f4c9ff6b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  STUN_CD: 0.7
   hp: 6
 --- !u!114 &6328612013422104090
 MonoBehaviour:
@@ -190,6 +191,7 @@ MonoBehaviour:
   damage: 4
   speed: 0.5
   fixedOnWP: 0
+  rotatable: 1
   FacingRight: 1
 --- !u!1 &6328612013806088642
 GameObject:
