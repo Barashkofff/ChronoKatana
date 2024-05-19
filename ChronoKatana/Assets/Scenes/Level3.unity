@@ -362,6 +362,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7407384396392682251, guid: fe27f3319f1c7cc4ebcfee6e0e3b3f03, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 35624e40b8be4734cac5bb7f324411c1, type: 2}
     - target: {fileID: 7407384396837193408, guid: fe27f3319f1c7cc4ebcfee6e0e3b3f03, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1407,7 +1411,7 @@ Transform:
   m_Children:
   - {fileID: 1425475886}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829609771
 GameObject:
@@ -1539,7 +1543,7 @@ PrefabInstance:
       objectReference: {fileID: 74786218}
     - target: {fileID: 2736375675119946199, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2736375675119946199, guid: 0b3e48ed26ba6a449bd92f8a2ae30695, type: 3}
       propertyPath: m_LocalPosition.x

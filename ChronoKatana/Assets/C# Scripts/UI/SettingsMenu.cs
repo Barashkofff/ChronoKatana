@@ -9,10 +9,15 @@ public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
 
+    private void OnEnable()
+    {
+        LoadVolume();
+    }
+
     // Аудио
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
+        audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 15);
         SaveVolume(volume);
     }
 
@@ -32,7 +37,7 @@ public class SettingsMenu : MonoBehaviour
             SetVolume(savedVolume);
         }
         else
-            SetVolume(0.1f);
+            SetVolume(0.5f);
     }
 
     // Для сохранения
