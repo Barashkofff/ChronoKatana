@@ -72,6 +72,8 @@ class Enemy2 : MonoBehaviour
                 animator.Play("PrepAttack");
                 cur_CD = attackCD;
             }
+            else
+                MoveToPlayer(player.position);
         }
     }
 
@@ -98,12 +100,16 @@ class Enemy2 : MonoBehaviour
 
     private void MoveToPlayer(Vector2 tar_pos)
     {
-        float x = FindDistToClosestMark();
-        if (fixedOnWP && x < 0.5)
+        
+        if (fixedOnWP)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            animator.SetFloat("HorizontalMove", 0);
-            return;
+            float x = FindDistToClosestMark();
+            if (x < 0.5)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                animator.SetFloat("HorizontalMove", 0);
+                return;
+            }
         }
         if (isAttacking)
             return;
