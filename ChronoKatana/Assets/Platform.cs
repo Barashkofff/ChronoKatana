@@ -57,8 +57,10 @@ public class Platform : MonoBehaviour
         transform.DetachChildren();
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawLine(transform.position, (Vector2)transform.position + (_vertical ? new Vector2(0, shift) : new Vector2(shift, 0)));
     }
+#endif
 }

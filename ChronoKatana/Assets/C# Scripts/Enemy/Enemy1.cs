@@ -24,9 +24,11 @@ public class Enemy1 : MonoBehaviour
 
     private EnemyHP hp_script;
     private float HorizontalMove = 0f;
-    private bool FacingRight = true;
+    [SerializeField] private bool FacingRight = true;
     private Rigidbody2D rb;
     private Transform player;
+
+    [SerializeField] private AudioSource audioSource;
 
     void Start() {
         hp_script = GetComponent<EnemyHP>();
@@ -77,18 +79,21 @@ public class Enemy1 : MonoBehaviour
 
     private void MoveToPlayer(Vector2 tar_pos)
     {
-        float x = FindDistToClosestMark();
-        if (fixedOnWP && x < 0.5)
+        
+        if (fixedOnWP)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            animator.SetFloat("HorizontalMove", 0);
-            return;
+            float x = FindDistToClosestMark();
+            if (x < 0.5f)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                animator.SetFloat("HorizontalMove", 0);
+                return;
+            }
         }
         if (isAttacking)
             return;
         Vector2 targetVec = tar_pos - (Vector2)transform.position;
         HorizontalMove = targetVec.x;
-        Debug.Log("fdssdfsdfsdgsdgsd");
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
@@ -109,6 +114,8 @@ public class Enemy1 : MonoBehaviour
 
 
     private void Flip() {
+        if (is_targeted && Mathf.Abs(player.position.x - transform.position.x) < 0.5)
+            return;
         FacingRight = !FacingRight;
 
         Vector3 theScale = transform.localScale;
@@ -156,21 +163,25 @@ public class Enemy1 : MonoBehaviour
         animator.Play("ATTACK");
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y + targetDist_y, 0), new Vector3(transform.position.x + (FacingRight ? targetDist_x : -targetDist_x), transform.position.y + targetDist_y, 0));
         Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - targetDist_y, 0), new Vector3(transform.position.x + (FacingRight ? targetDist_x : -targetDist_x), transform.position.y - targetDist_y, 0));
     }
-
-    public void StopAttack() {
+#endif
+    public void StopAttack()
+    {
+        audioSource.Play();
         if (!isAttacking)
             return;
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, layerMask);
         Debug.Log("att");
         foreach (Collider2D player in hitPlayer)
             player.GetComponent<PlayerController>().TakeDamage(damage);
-        isAttacking = false; 
+        isAttacking = false;
     }
+
 
     public void Stun()
     {

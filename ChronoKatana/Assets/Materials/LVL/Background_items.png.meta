@@ -467,10 +467,10 @@ TextureImporter:
         serializedVersion: 2
         x: 192
         y: 145
-        width: 32
+        width: 17
         height: 16
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -634,9 +634,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 238
+        y: 241
         width: 7
-        height: 14
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -846,9 +846,9 @@ TextureImporter:
         x: 2
         y: 224
         width: 22
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 11
+      alignment: 9
+      pivot: {x: 0.5, y: 0.72727275}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -868,8 +868,8 @@ TextureImporter:
         y: 212
         width: 22
         height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.72727275}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -889,8 +889,8 @@ TextureImporter:
         y: 199
         width: 22
         height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.72727275}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -910,8 +910,8 @@ TextureImporter:
         y: 185
         width: 22
         height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.72727275}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1511,6 +1511,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Background_items_67
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 145
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ae1531ea62fd3468c6480229783f2c
+      internalID: 1482377799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1572,6 +1593,7 @@ TextureImporter:
       Background_items_9: -2120110429
       Background_items_41: 567306068
       Background_items_33: -569597668
+      Background_items_67: 1482377799
       Background_items_64: -1510217334
       Background_items_24: 1179198676
       Background_items_28: -1921457022

@@ -22,6 +22,7 @@ class Enemy2 : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private bool fixedOnWP;
+    [SerializeField] private bool rotatable;
 
     private int mark_i;
     private float cur_CD = -1;
@@ -30,9 +31,11 @@ class Enemy2 : MonoBehaviour
 
     private EnemyHP hp_script;
     private float HorizontalMove = 0f;
-    private bool FacingRight = true;
+    [SerializeField] private bool FacingRight = true;
     private Rigidbody2D rb;
     private Transform player;
+
+    [SerializeField] private AudioSource audioSource;
 
     void Start() {
         hp_script = GetComponent<EnemyHP>();
@@ -72,12 +75,14 @@ class Enemy2 : MonoBehaviour
                 animator.Play("PrepAttack");
                 cur_CD = attackCD;
             }
+            //else
+            //    MoveToPlayer(player.position);
         }
     }
 
     private bool CheckRayCast()
     {
-        var hit = Physics2D.Raycast(transform.position, (player.position - transform.position).normalized * attackRange, Vector2.Distance(player.position, transform.position), ~IgnoreRC);
+        var hit = Physics2D.Raycast(transform.position, (player.position - attackPoint.position).normalized * attackRange, Vector2.Distance(player.position, transform.position), ~IgnoreRC);
         
         if (hit.collider != null)
             return hit.collider.gameObject == player.gameObject;
@@ -98,12 +103,16 @@ class Enemy2 : MonoBehaviour
 
     private void MoveToPlayer(Vector2 tar_pos)
     {
-        float x = FindDistToClosestMark();
-        if (fixedOnWP && x < 0.5)
+        
+        if (fixedOnWP)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            animator.SetFloat("HorizontalMove", 0);
-            return;
+            float x = FindDistToClosestMark();
+            if (x < 0.5)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                animator.SetFloat("HorizontalMove", 0);
+                return;
+            }
         }
         if (isAttacking)
             return;
@@ -127,6 +136,8 @@ class Enemy2 : MonoBehaviour
     }
 
     private void Flip() {
+        if (is_targeted && Mathf.Abs(player.position.x - transform.position.x) < 0.5)
+            return;
         FacingRight = !FacingRight;
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
@@ -174,14 +185,17 @@ class Enemy2 : MonoBehaviour
         //if (splashRange == 0)
         //proj.GetComponent<ProjectileScript>().damage = damage;
         proj.GetComponent<Rigidbody2D>().AddForce(dir * proj_speed, ForceMode2D.Impulse);
-        proj.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+        if (rotatable)
+            proj.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
         proj.GetComponent<ProjectileScript>().damage = damage;
 
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected() {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+#endif
 
     public void StopAttack() { isAttacking = false; }
 

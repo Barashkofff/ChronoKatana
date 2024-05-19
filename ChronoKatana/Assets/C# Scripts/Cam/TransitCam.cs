@@ -17,7 +17,7 @@ public class TransitCam : MonoBehaviour
     private float targetSize;
     
 
-    void Start()
+    public void Transition()
     {
         PlayerController.instance.enabled = false;
         if (!_isCamFixed)
@@ -27,6 +27,7 @@ public class TransitCam : MonoBehaviour
         startSize = transitCam.orthographicSize;
         targetSize = mainCam.orthographicSize;
 
+        Debug.Log("SET_START_POS_CAM");
         startPos = transform.position;
         targetPos = mainCam.transform.position;
         StartCoroutine(Intro());

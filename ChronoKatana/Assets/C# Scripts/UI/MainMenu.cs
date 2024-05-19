@@ -12,10 +12,17 @@ public class MainMenu : MonoBehaviour
         settingsMenu.StartSetSettings();
     }
 
-    public void PlayGame(string x)
+    public void PlayGame()
     {
-        SceneManager.LoadScene(x);
+        Repository.LoadState();
+        LevelSaveLoader lsl = new LevelSaveLoader();
+        (lsl as ISaveLoader).LoadData();
     }
+    public void Learning()
+    {
+        SceneManager.LoadScene("Learning", LoadSceneMode.Single);
+    }
+
     public void ExitGame()
     {
         Debug.Log("конец");

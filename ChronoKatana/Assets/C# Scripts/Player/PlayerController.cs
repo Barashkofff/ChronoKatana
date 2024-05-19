@@ -44,17 +44,41 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private bool _ableDoubleJump;
     [SerializeField] private bool _ableDash;
+    [SerializeField] private bool _ableCoolDash;
 
     [SerializeField] private Slider HPBar;
     [SerializeField] private LoseMenu _loseMenu;
+
+    [SerializeField] private AudioSource walk;
+    [SerializeField] private AudioSource dsh;
+    [SerializeField] private AudioSource jmp;
+    [SerializeField] private AudioSource dmg_s;
 
     private Vector2 save_pos;
     private float save_pos_time = 0.5f;
     private float save_pos_timer = 0.5f;
     private float coyoteTime = 0.1f;
     private float coyoteCounter;
-    public void dash_SetTrue() { _ableDash = true; }
-    public void doubleJump_SetTrue() { _ableDoubleJump = true; }
+
+    private int curTable;
+
+    public bool GetDoubleJump() { return _ableDoubleJump; }
+    public bool GetDash() { return _ableDash; }
+    public bool GetCoolDash() { return _ableCoolDash; }
+    public void dash_SetTrue() { _ableDash = true; SaveState(); }
+    public void coolDash_SetTrue() { _ableCoolDash = true; SaveState(); }
+    public void doubleJump_SetTrue() { _ableDoubleJump = true; SaveState(); }
+
+    public void SaveState()
+    {
+        PlayerSaveLoader psl = new PlayerSaveLoader();
+        (psl as ISaveLoader).SaveData();
+        Repository.SaveState();
+    }
+
+    public int CurTable { get { return curTable; } set { curTable = value; } }
+
+    public void SetAbles(bool dj, bool d, bool cd) { _ableDoubleJump = dj; _ableDash = d; _ableCoolDash = cd; }
 
     void Start()
     {
@@ -68,6 +92,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cur_hp = hp;
         UpdateHpBar();
+
+        Repository.LoadState();
+        PlayerSaveLoader psl = new PlayerSaveLoader();
+        (psl as ISaveLoader).LoadData();
     }
 
     void Update()
@@ -79,6 +107,7 @@ public class PlayerController : MonoBehaviour
                 if (!animator.GetBool("IsAttackStart"))
                     animator.Play("Player_Jump");
                 animator.Play("Legs_Jump");
+                jmp.Play();
                 coyoteCounter = 0;
             }
             else if (_ableDoubleJump && DoubleJumpEnable) {
@@ -87,20 +116,31 @@ public class PlayerController : MonoBehaviour
                 if (!animator.GetBool("IsAttackStart"))
                     animator.Play("Player_Jump");
                 animator.Play("Legs_Jump");
+                jmp.Play();
             }
         }
 
 
 
-       
 
-        if (Input.GetKeyDown(KeyCode.S))
-            camera_controller.offset.y -= 3;
-        if (Input.GetKeyUp(KeyCode.S))
-            camera_controller.offset.y += 3;
+        if (SceneManager.GetActiveScene().name != "Learning")
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+                camera_controller.offset.y -= 3;
+            if (Input.GetKeyUp(KeyCode.S))
+                camera_controller.offset.y += 3;
+        }
 
         HorizontalMove = Input.GetAxisRaw("Horizontal") * speed;
-
+        if (HorizontalMove == 0) 
+        {
+            walk.Stop();
+        }
+        else
+        {
+            if (!walk.isPlaying)
+                walk.Play();
+        }
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
 
         animator.SetBool("InAir", !isGrounded);
@@ -127,6 +167,9 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (_isDashing)
+            return;
+        dmg_s.Play();
         cur_hp -= damage;
         UpdateHpBar();
         Debug.Log(this.name + " hp: " + cur_hp);
@@ -134,11 +177,18 @@ public class PlayerController : MonoBehaviour
             Die();
     }
 
+    public void Heal(float heal)
+    {
+        cur_hp = (cur_hp + heal > hp) ? hp : cur_hp + heal;
+        UpdateHpBar();
+    }
+
     private void Die()
     {
         gameObject.SetActive(false);
         _loseMenu.Lose();
         Debug.Log("You are killed");
+        SaveLoadManager.SaveGame();
     }
 
     private void Flip()
@@ -182,14 +232,21 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash(Vector2 direction)
     {
-        animator.SetBool("isDashing", true);
-        animator.Play("Legs_Dash");
         if (direction == Vector2.zero) yield break;
         if (_isDashing) yield break;
 
-        Physics2D.IgnoreLayerCollision(gameObject.layer, 6, true);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, 10, true);
+        dsh.Play();
+        Debug.Log(_ableCoolDash);
+        if (_ableCoolDash)
+        {
+            Debug.Log("LLLLLLLL " + gameObject.layer);
+            Physics2D.IgnoreLayerCollision(gameObject.layer, 6, true);
+            Physics2D.IgnoreLayerCollision(gameObject.layer, 10, true);
+        }
         _isDashing = true;
+
+        animator.SetBool("isDashing", true);
+        animator.Play("Legs_Dash");
 
         var elapsedTime = 0f;
         while (elapsedTime < _dashTime)
@@ -202,8 +259,11 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        Physics2D.IgnoreLayerCollision(gameObject.layer, 6, false);
-        Physics2D.IgnoreLayerCollision(gameObject.layer, 10, false);
+        if (_ableCoolDash)
+        {
+            Physics2D.IgnoreLayerCollision(gameObject.layer, 6, false);
+            Physics2D.IgnoreLayerCollision(gameObject.layer, 10, false);
+        }
         _isDashing = false;
         animator.SetBool("isDashing", false);
         yield break;

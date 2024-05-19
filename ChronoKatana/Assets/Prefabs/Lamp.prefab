@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3131049044853317827}
   - component: {fileID: 3131049044853317836}
   - component: {fileID: 3131049044853317837}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 6
   m_Sprite: {fileID: 1896748600, guid: 081c53bb727a1c34a82a91dfd87d5c7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
