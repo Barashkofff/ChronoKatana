@@ -20,6 +20,10 @@ public class IntroObjects : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LevelSaveLoader levelSaveLoader = new LevelSaveLoader();
+        (levelSaveLoader as ISaveLoader).SaveData();
+
+        Repository.SaveState();
         Repository.LoadState();
         if (SceneManager.GetActiveScene().name == "Learning")
         {
@@ -51,10 +55,7 @@ public class IntroObjects : MonoBehaviour
             Repository.SetData(data);
         }
         Debug.Log("22");
-        LevelSaveLoader levelSaveLoader = new LevelSaveLoader();
-        (levelSaveLoader as ISaveLoader).SaveData();
-
-        Repository.SaveState();
+        
         Debug.Log("2222");
     }
 
