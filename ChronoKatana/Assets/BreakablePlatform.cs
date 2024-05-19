@@ -14,7 +14,7 @@ public class BreakablePlatform : MonoBehaviour
     void Start()
     {
         _half_width = GetComponent<BoxCollider2D>().size.x / 2;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -37,22 +37,55 @@ public class BreakablePlatform : MonoBehaviour
     private IEnumerator Breaking()
     {
         float timer = 0;
+        Transform plat = spriteRenderer.transform;
+        Vector3 pos = plat.position;
+        int count = 9;
         while (timer < time)
         {
-            timer += Time.deltaTime;
+            if (count == 0)
+            {
+                float x = Random.Range(-1, 1); float y = Random.Range(-1, 1);
+                float a = .0625f;
+                plat.position = new Vector3(pos.x + x * a, pos.y + y * a, pos.z);
+                count = 9;
+            }
+
+            timer += Time.deltaTime; count--;
             yield return new WaitForEndOfFrame();
         }
-        spriteRenderer.enabled = false;
+        plat.position = pos;
+
+        spriteRenderer.color = new Color(1, 1, 1, 0);
         GetComponent<BoxCollider2D>().enabled = false;
 
         timer = 0;
-        while (timer < re_time)
+        while (timer < re_time / 4)
         {
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        timer = 0;
+        while (timer < re_time / 4)
+        {
+            spriteRenderer.color = new Color(1, 1, 1, timer / (re_time / 4) / 4);
+            timer += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        timer = 0;
+        while (timer < re_time / 4)
+        {
+            spriteRenderer.color = new Color(1, 1, 1, 0.25f - (timer / (re_time / 4) / 2));
+            timer += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        timer = 0;
+        while (timer < re_time / 4)
+        {
+            spriteRenderer.color = new Color(1, 1, 1, timer / (re_time / 4));
+            timer += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
 
-        spriteRenderer.enabled = true;
         GetComponent<BoxCollider2D>().enabled = true;
     }
 }
