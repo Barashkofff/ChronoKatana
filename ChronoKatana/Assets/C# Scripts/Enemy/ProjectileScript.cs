@@ -34,6 +34,7 @@ public class ProjectileScript : MonoBehaviour
 
     public void Deflected()
     {
+        transform.localScale = new Vector3(-1, -1, 1);
         isDeflected = true;
         GetComponent<Rigidbody2D>().velocity *= -1;
     }
