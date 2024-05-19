@@ -77,12 +77,16 @@ public class Enemy1 : MonoBehaviour
 
     private void MoveToPlayer(Vector2 tar_pos)
     {
-        float x = FindDistToClosestMark();
-        if (fixedOnWP && x < 0.5)
+        
+        if (fixedOnWP)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            animator.SetFloat("HorizontalMove", 0);
-            return;
+            float x = FindDistToClosestMark();
+            if (x < 0.5f)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                animator.SetFloat("HorizontalMove", 0);
+                return;
+            }
         }
         if (isAttacking)
             return;
