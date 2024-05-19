@@ -54,6 +54,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 84cb7767a2c3cf640b62a7c0db495bd1, type: 3}
     - {fileID: 2800000, guid: 31d4cdaa657b2924e89f468dab3f7733, type: 3}
     - {fileID: 2800000, guid: 46086ead7c2c39c42a34cca2e420259d, type: 3}
+    - {fileID: 2800000, guid: 98fc876c9b1c4fc4793d5d2312ced51b, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -228,6 +229,10 @@ SpriteAtlas:
   - {fileID: 95246070, guid: 31d4cdaa657b2924e89f468dab3f7733, type: 3}
   - {fileID: 1008589402, guid: 31d4cdaa657b2924e89f468dab3f7733, type: 3}
   - {fileID: 731277246, guid: 31d4cdaa657b2924e89f468dab3f7733, type: 3}
+  - {fileID: 1067215593, guid: 98fc876c9b1c4fc4793d5d2312ced51b, type: 3}
+  - {fileID: -2059045542, guid: 98fc876c9b1c4fc4793d5d2312ced51b, type: 3}
+  - {fileID: -1573315610, guid: 98fc876c9b1c4fc4793d5d2312ced51b, type: 3}
+  - {fileID: 225427820, guid: 98fc876c9b1c4fc4793d5d2312ced51b, type: 3}
   - {fileID: 1905328711, guid: 46086ead7c2c39c42a34cca2e420259d, type: 3}
   - {fileID: 1447457860, guid: 46086ead7c2c39c42a34cca2e420259d, type: 3}
   - {fileID: -2109019439, guid: 46086ead7c2c39c42a34cca2e420259d, type: 3}
@@ -432,6 +437,10 @@ SpriteAtlas:
   - Texture2.0_26
   - Texture2.0_29
   - Texture2.0_28
+  - lvl3corners_1
+  - lvl3corners_0
+  - lvl3corners_3
+  - lvl3corners_2
   - Texture2.0_18
   - Texture2.0_19
   - Texture2.0_10

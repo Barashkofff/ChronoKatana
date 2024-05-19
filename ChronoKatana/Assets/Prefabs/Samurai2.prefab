@@ -161,6 +161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   STUN_CD: 0.7
   hp: 6
+  isBoss: 0
+  HPBar: {fileID: 0}
 --- !u!114 &571902171731458392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,11 +188,12 @@ MonoBehaviour:
   attackPoint: {fileID: 571902172148975233}
   attackRange: 15
   attackCD: 2
-  targetDist_x: 15
-  targetDist_y: 5
+  targetDist_x: 20
+  targetDist_y: 20
   damage: 4
-  speed: 0.5
+  speed: 0
   fixedOnWP: 0
+  rotatable: 0
   FacingRight: 1
 --- !u!1 &571902172148975232
 GameObject:

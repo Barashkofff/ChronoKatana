@@ -27,20 +27,44 @@ public class Samurai1 : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
 
+    private int phase = 0;
+    private float checkHp;
+
+    private float phase_cd;
+    private float phase_speed;
+
+    [SerializeField] private GameObject[] ranges;
+    [SerializeField] private GameObject end_panel;
+
     void Start()
     {
+        phase_cd = attackCD * 2;
+        phase_speed = speed * 0.5f;
+        animator.speed = 0.5f;
         hp_script = GetComponent<EnemyHP>();
         rb = GetComponent<Rigidbody2D>();
         player = PlayerController.instance.transform;
+        checkHp = hp_script.Hp / 4 * (4 - phase);
     }
 
     private void OnEnable()
     {
-        cur_CD = attackCD;
+        cur_CD = phase_cd;
+    }
+
+    public void OnDisable()
+    {
+        end_panel.SetActive(true);
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
     }
 
     void Update()
     {
+        if (hp_script.Cur_Hp <= checkHp)
+        {
+            NextPhase();
+        }
         if (hp_script._Stunned)
             if (isAttacking) { Stun(); }
         //if (hp_script._Stunned)
@@ -51,7 +75,10 @@ public class Samurai1 : MonoBehaviour
         //}
         if (cur_CD >= 0)
             cur_CD -= Time.deltaTime;
-        CheckTarget();
+
+        if (!is_targeted)
+            CheckTarget();
+        
         if (!is_targeted)
         {
             Patrol();
@@ -64,7 +91,7 @@ public class Samurai1 : MonoBehaviour
             if (cur_CD < 0)
             {
                 Attack();
-                cur_CD = attackCD;
+                cur_CD = phase_cd;
             }
         }
     }
@@ -78,7 +105,7 @@ public class Samurai1 : MonoBehaviour
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
-        rb.velocity = new Vector2(Mathf.Sign(HorizontalMove) * speed, rb.velocity.y);
+        rb.velocity = new Vector2(Mathf.Sign(HorizontalMove) * phase_speed, rb.velocity.y);
     }
 
     private void MoveToPlayer(Vector2 tar_pos)
@@ -100,7 +127,7 @@ public class Samurai1 : MonoBehaviour
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
         if (HorizontalMove < 0 && FacingRight || HorizontalMove > 0 && !FacingRight)
             Flip();
-        rb.velocity = new Vector2(Mathf.Sign(HorizontalMove) * speed, rb.velocity.y);
+        rb.velocity = new Vector2(Mathf.Sign(HorizontalMove) * phase_speed, rb.velocity.y);
     }
 
     private float FindDistToClosestMark()
@@ -148,17 +175,17 @@ public class Samurai1 : MonoBehaviour
         if (Mathf.Abs(tarToVec.y) < targetDist_y * 0.5f && Mathf.Abs(tarToVec.x) < targetDist_x * 0.5f)
         {
             is_targeted = true;
+            GetComponent<EnemyHP>().HPBar.gameObject.SetActive(true);
             return;
         }
         else if (tarToVec.x * HorizontalMove >= 0 && Mathf.Abs(tarToVec.y) < targetDist_y && Mathf.Abs(tarToVec.x) < targetDist_x)
         {
             is_targeted = true;
+            GetComponent<EnemyHP>().HPBar.gameObject.SetActive(true);
             return;
         }
 
 
-        if (Mathf.Abs(tarToVec.y) > targetDist_y * 2 && Mathf.Abs(tarToVec.x) > targetDist_x * 2)
-            is_targeted = false;
     }
 
     private void Attack()
@@ -199,7 +226,55 @@ public class Samurai1 : MonoBehaviour
     
     public void Stun()
     {
-        isAttacking = false;
-        animator.Play("Idle");
+        //isAttacking = false;
+        //animator.Play("Idle");
+    }
+
+    private void NextPhase()
+    {
+        phase++;
+        checkHp = hp_script.Hp / 4 * (4 - phase);
+        switch (phase)
+        {
+            case 2:
+                SpawnRanges(1);
+                break;
+            case 3:
+                animator.speed = 0.7f;
+                phase_speed = speed * 0.7f;
+                phase_cd = attackCD * 1.5f;
+                SpawnRanges(2);
+                break;
+            case 4:
+                animator.speed = 1f;
+                phase_speed = speed;
+                phase_cd = attackCD;
+                SpawnRanges(4);
+                break;
+            default:
+                return;
+        }
+    }
+
+    private void SpawnRanges(int i)
+    {
+        switch (i)
+        {
+            case 1:
+                ranges[Random.Range(0, 4)].SetActive(true);
+                break;
+            case 2:
+                ranges[Random.Range(0, 2)].SetActive(true);
+                ranges[Random.Range(3, 4)].SetActive(true);
+                break;
+            case 4:
+                ranges[0].SetActive(true);
+                ranges[1].SetActive(true);
+                ranges[3].SetActive(true);
+                ranges[4].SetActive(true);
+                break;
+            default:
+                return;
+        }
     }
 }
