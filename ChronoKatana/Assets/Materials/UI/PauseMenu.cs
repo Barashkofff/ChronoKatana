@@ -65,7 +65,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         Repository.LoadState();
-        if (SceneManager.GetActiveScene().name != "Learning")
+        if (SceneManager.GetActiveScene().name != "Learning" && SceneManager.GetActiveScene().name != "Level3")
         {
             EnemySaveLoader esl = new EnemySaveLoader();
             (esl as ISaveLoader).SaveData();
