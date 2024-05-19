@@ -32,7 +32,7 @@ public class IntroObjects : MonoBehaviour
         SaveLoadManager.LoadGame();
         int tableInd = PlayerController.instance.CurTable;
         Debug.Log("INDEX_LOADED");
-        transform.position = tables[tableInd].position;   
+        transform.position = tables[tableInd].position;
         PlayerController.instance.transform.position = tables[tableInd].position - new Vector3(2, 0, 0);
         UpdateTables();
         transCam.Transition();
