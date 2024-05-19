@@ -18,7 +18,7 @@ public class Samurai1 : MonoBehaviour
     private int mark_i;
     private float cur_CD = -1;
     private bool is_targeted;
-    private bool isAttacking;
+    public bool isAttacking;
     public bool _stunned = false;
 
     private EnemyHP hp_script;
@@ -211,7 +211,6 @@ public class Samurai1 : MonoBehaviour
         Debug.Log("att");
         foreach (Collider2D player in hitPlayer)
             player.GetComponent<PlayerController>().TakeDamage(damage);
-        isAttacking = false;
     }
 
 #if UNITY_EDITOR

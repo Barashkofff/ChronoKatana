@@ -73,8 +73,8 @@ class Enemy2 : MonoBehaviour
                 animator.Play("PrepAttack");
                 cur_CD = attackCD;
             }
-            else
-                MoveToPlayer(player.position);
+            //else
+            //    MoveToPlayer(player.position);
         }
     }
 
